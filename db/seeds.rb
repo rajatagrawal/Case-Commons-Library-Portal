@@ -5,3 +5,10 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+#
+#
+
+
+(1..10).each do |id|
+  Book.create(title: "Book#{id}",author: "Author#{id}",publisher: "Publisher#{id}",price: id+10 )
+end
