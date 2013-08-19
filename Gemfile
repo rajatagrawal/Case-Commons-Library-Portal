@@ -25,6 +25,8 @@ gem 'jquery-rails'
 group :development, :test do
   gem 'rspec-rails'
   gem 'haml-rails'
+  gem 'faker'
+  gem 'ffaker'
 end
 
 # To use ActiveModel has_secure_password

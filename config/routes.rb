@@ -1,6 +1,8 @@
 LibraryCc::Application.routes.draw do
 
   root to: 'books#index'
+
+  get '/user/:id', to: 'users#show', as: 'user'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -10,5 +10,12 @@
 
 
 (1..10).each do |id|
-  Book.create(title: "Book#{id}",author: "Author#{id}",publisher: "Publisher#{id}",price: id+10 )
+  Book.create(title: Faker::Lorem.words(5).join(" "),
+              author: Faker::Lorem.words(2).join(" "),
+              publisher: Faker::Lorem.words(2).join(" "),
+              price: Faker.numerify("##.##") )
+
+  User.create(first_name: Faker::Name.first_name,
+              last_name: Faker::Name.last_name,
+              email_address: Faker::Internet.email)
 end
