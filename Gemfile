@@ -27,6 +27,7 @@ group :development, :test do
   gem 'haml-rails'
   gem 'faker'
   gem 'ffaker'
+  gem 'simple_form'
 end
 
 # To use ActiveModel has_secure_password
