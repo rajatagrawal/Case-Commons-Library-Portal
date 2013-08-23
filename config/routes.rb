@@ -2,7 +2,11 @@ LibraryCc::Application.routes.draw do
 
   root to: 'books#index'
 
-  get '/user/:id', to: 'users#show', as: 'user'
+  get '/users/:id', to: 'users#show', as: 'users'
+  get '/books/new', to: 'books#new', as: 'books'
+  post '/books/new', to: 'books#create', as: 'books'
+  get '/books/delete', to: 'books#prepare_delete_page', as: 'books'
+  delete '/books/delete', to: 'books#destroy', as: 'books'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

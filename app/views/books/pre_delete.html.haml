@@ -1,0 +1,20 @@
+%p this is the delete page
+%p the list of all books are,
+%table
+  %th Title
+  %th Author
+  %th Publisher
+  %th Price
+  %th Delete?
+  - @books.each do |book|
+    %tr
+      %td
+        = book.title
+      %td
+        = book.author
+      %td
+        = book.publisher
+      %td
+        = book.price
+      %td
+        = link_to "delete", '/books/delete/', confirm: "Are you sure?", method: :delete

@@ -29,6 +29,7 @@ group :development, :test do
   gem 'ffaker'
   gem 'simple_form'
   gem 'pry'
+  gem 'awesome_print'
 end
 
 # To use ActiveModel has_secure_password
