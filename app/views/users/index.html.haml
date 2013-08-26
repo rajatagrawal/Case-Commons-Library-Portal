@@ -1,0 +1,15 @@
+%table{border: '2px'}
+  %th
+    Name
+  %th
+    Email Address
+  %th
+    Books Issued
+  - @users.each do |user|
+    %tr
+      %td
+        = user.first_name + user.last_name
+      %td
+        = user.email_address
+      %td
+        = user.books
