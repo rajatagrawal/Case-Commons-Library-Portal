@@ -17,4 +17,4 @@
       %td
         = book.price
       %td
-        = link_to "delete", '/books/delete/', confirm: "Are you sure?", method: :delete
+        = link_to "delete",book_path(book.id), confirm: "Are you sure?", method: :delete

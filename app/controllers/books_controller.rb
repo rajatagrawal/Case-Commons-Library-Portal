@@ -5,7 +5,7 @@ class BooksController< ApplicationController
   end
 
   def show
-
+    @book = Book.find(params[:id])
   end
 
   def create
@@ -13,9 +13,7 @@ class BooksController< ApplicationController
   end
 
   def new
-    puts 'This is the new function of the books controller'
     @book = Book.new
-    @hi = "This is hi variable"
   end
 
   def prepare_delete_page
@@ -24,8 +22,7 @@ class BooksController< ApplicationController
   end
 
   def destroy
-    binding.pry
-    @book = Book.new(params[:book])
+    @book = Book.find(params[:id]).destroy
     render 'post_delete'
   end
 
