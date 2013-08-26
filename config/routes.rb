@@ -1,6 +1,6 @@
 LibraryCc::Application.routes.draw do
 
-  root to: 'books#index'
+  root to: 'application#welcome'
 
   # get '/users/:id', to: 'users#show', as: 'users'
 
