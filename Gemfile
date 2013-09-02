@@ -30,6 +30,7 @@ group :development, :test do
   gem 'simple_form'
   gem 'pry'
   gem 'awesome_print'
+  gem 'devise'
 end
 
 # To use ActiveModel has_secure_password
