@@ -1,4 +1,4 @@
-%h1 User profile
+%h1= @user.first_name + ' ' + @user.last_name
 
 %p The person info is
 Name :
@@ -7,5 +7,5 @@ Name :
 %p Email Address :
 = @user.email_address
 
-%p Books issued by the user are :
+%p Books issued :
 = @user.books
