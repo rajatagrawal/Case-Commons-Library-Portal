@@ -2,7 +2,7 @@ LibraryCc::Application.routes.draw do
 
   devise_for :users
 
-  root to: 'application#welcome'
+  root to: 'books#index'
 
   # get '/users/:id', to: 'users#show', as: 'users'
 
