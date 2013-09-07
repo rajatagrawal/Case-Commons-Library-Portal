@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.13'
+gem 'rails'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -28,7 +28,7 @@ group :development, :test do
   gem 'faker'
   gem 'ffaker'
   gem 'simple_form'
-  gem 'pry'
+  gem 'pry-debugger'
   gem 'awesome_print'
   gem 'devise'
 end
