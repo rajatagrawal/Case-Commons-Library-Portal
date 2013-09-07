@@ -26,11 +26,6 @@ class BooksController< ApplicationController
     @book = Book.new
   end
 
-  def prepare_delete_page
-    @books = Book.all
-    render 'pre_delete'
-  end
-
   def destroy
     @book = Book.find(params[:id]).destroy
     redirect_to action: :index
