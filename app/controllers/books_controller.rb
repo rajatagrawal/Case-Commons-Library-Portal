@@ -4,8 +4,18 @@ class BooksController< ApplicationController
     @books = Book.all
   end
 
+  def edit
+    @book = Book.find(params[:id])
+  end
+
   def show
     @book = Book.find(params[:id])
+  end
+
+  def update
+    Book.update(params[:id],params[:book])
+    flash.now[:notice] = "The books has been successfully updated!"
+    redirect_to action: :show
   end
 
   def create
@@ -23,7 +33,7 @@ class BooksController< ApplicationController
 
   def destroy
     @book = Book.find(params[:id]).destroy
-    render 'post_delete'
+    redirect_to action: :index
   end
 
 end

@@ -3,4 +3,5 @@
   = f.input :author
   = f.input :publisher
   = f.input :price
-  = f.button :submit, label: "this is my label"
+  = f.button :submit, 'Save'
+= button_to 'Back', book_path(@book.id), method: :get
