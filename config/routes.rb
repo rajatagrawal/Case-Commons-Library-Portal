@@ -6,7 +6,6 @@ LibraryCc::Application.routes.draw do
 
   # get '/users/:id', to: 'users#show', as: 'users'
 
-  get '/books/delete', to: 'books#prepare_delete_page', as: 'books'
   resources :books
   resources :users
   # The priority is based upon order of creation:
