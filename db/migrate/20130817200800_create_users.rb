@@ -4,7 +4,7 @@ class CreateUsers < ActiveRecord::Migration
     create_table :users do |t|
       t.text :first_name
       t.text :last_name
-      t.text :email_address
+      t.text :email
 
       t.timestamps
     end
