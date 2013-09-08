@@ -1,5 +1,4 @@
 class UsersController< ApplicationController
-  # before_filter :authenticate_user!
   def index
     @users = User.all
   end
@@ -24,6 +23,7 @@ class UsersController< ApplicationController
   end
 
   def create
+    binding.pry
     @user = User.create(params[:user])
   end
 end
