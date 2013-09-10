@@ -31,4 +31,11 @@ class BooksController< ApplicationController
     redirect_to action: :index
   end
 
+  def checkout
+    @book = Book.find(params[:id])
+    @book.user = current_user
+    @book.save!
+    @books = Book.all
+    render 'index'
+  end
 end
