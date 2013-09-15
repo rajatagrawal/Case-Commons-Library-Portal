@@ -23,7 +23,7 @@ class UsersController< ApplicationController
   end
 
   def create
-    binding.pry
-    @user = User.create(params[:user])
+    @user = params[:user]
+    @user.save!
   end
 end
