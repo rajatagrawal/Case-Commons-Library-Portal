@@ -19,6 +19,7 @@ class BooksController< ApplicationController
   def checkout
     @book.user = current_user
     @book.save!
+    UserMailer.checkout(current_user,@book).deliver
     @books = Book.all
     render 'index'
   end
