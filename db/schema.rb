@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130909115000) do
+ActiveRecord::Schema.define(:version => 20130915091000) do
 
   create_table "books", :force => true do |t|
     t.string   "title"
@@ -26,10 +26,10 @@ ActiveRecord::Schema.define(:version => 20130909115000) do
   create_table "users", :force => true do |t|
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "email",                  :default => "", :null => false
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
-    t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "email",                  :default => "",         :null => false
+    t.datetime "created_at",                                     :null => false
+    t.datetime "updated_at",                                     :null => false
+    t.string   "encrypted_password",     :default => "",         :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(:version => 20130909115000) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.string   "role"
+    t.string   "role",                   :default => "employee"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email_address", :unique => true
