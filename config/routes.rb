@@ -9,6 +9,7 @@ LibraryCc::Application.routes.draw do
   resources :books
   resources :users
   post '/books/checkout', to: 'books#checkout', as: 'checkout'
+  get 'users/profile/:id', to: 'users#profile', as: 'profile'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

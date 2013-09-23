@@ -26,4 +26,8 @@ class UsersController< ApplicationController
     @user = params[:user]
     @user.save!
   end
+
+  def profile
+    @user = User.find(params[:id])
+  end
 end

@@ -7,4 +7,5 @@ Name :
 = @user.email
 
 %p Books issued :
-= @user.books
+- @user.books.each do |book|
+  = book.title
