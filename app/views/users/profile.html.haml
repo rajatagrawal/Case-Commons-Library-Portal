@@ -1,0 +1,31 @@
+%h2
+  = @user.first_name + @user.last_name
+
+%p
+  Your email address :
+  = @user.email
+
+%p Books issued :
+%table
+  %th
+    Serial No
+  %th
+    Name
+  %th
+    Issued on
+  %th
+    Check in
+  - @user.books.each_with_index do |book,index|
+    %tr
+      %td
+        = index+1
+      %td
+        = book.title
+      %td
+        = Time.now.strftime('%m/%d/%Y')
+      %td
+        = button_tag "Check In"
+%p
+  = link_to 'Check out a book', books_path
+%p
+  = link_to 'Sign out', destroy_user_session_path, method: :delete
