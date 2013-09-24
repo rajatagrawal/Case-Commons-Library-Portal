@@ -24,7 +24,7 @@
       %td
         = Time.now.strftime('%m/%d/%Y')
       %td
-        = button_tag "Check In"
+        = button_to "Check In", checkin_path(id: book.id), confirm: 'Are you sure?'
 %p
   = link_to 'Check out a book', books_path
 %p

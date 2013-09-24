@@ -17,9 +17,23 @@ class BooksController< ApplicationController
   end
 
   def checkout
-    @book.user = current_user
-    @book.save!
-    @books = Book.all
-    render 'index'
+    if @book.user.blank?
+      @book.user = current_user
+      @book.save!
+      redirect_to action: :index
+    else
+      render text: 'You can not check out this book.'
+    end
+
+  end
+
+  def checkin
+    if @book.user == current_user
+      @book.user = nil
+      @book.save!
+      redirect_to action: :index
+    else
+      render text: 'You cannot check in this book'
+    end
   end
 end
