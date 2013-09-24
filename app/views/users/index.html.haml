@@ -1,3 +1,4 @@
+%h2 Users
 %table{border: '2px'}
   %th
     Name
@@ -12,4 +13,8 @@
       %td
         = user.email
       %td
-        = user.books
+        - user.books.each do |book|
+          %li
+            = book.title
+
+= button_to 'Back', :back
