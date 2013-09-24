@@ -28,10 +28,14 @@ class UsersController< ApplicationController
   end
 
   def profile
-    @user = User.find(params[:id])
-    unless (current_user.admin? || @user == current_user)
-      render text: 'Sorry you are not allowed to view this page'
-
+    if params[:id] == nil
+      @user = current_user
+    else
+      if current_user.id == params[:id].to_i || current_user.admin?
+        @user = User.find(params[:id])
+      else
+        render text: 'Sorry, you are not allowed to view this page.'
+      end
     end
   end
 end

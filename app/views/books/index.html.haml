@@ -22,4 +22,4 @@
           = book.user.first_name + ' ' + book.user.last_name
         - else
           = button_to 'Checkout', checkout_path(id: book.id), confirm: 'Are you sure?'
-= button_to 'Back', :back
+= button_to 'Back', :back, method: :get
