@@ -6,6 +6,7 @@ LibraryCc::Application.routes.draw do
 
   # get '/users/:id', to: 'users#show', as: 'users'
 
+  get 'books/error', to: 'books#error', as: 'error'
   resources :books
   resources :users
   post '/books/checkout', to: 'books#checkout', as: 'checkout'
