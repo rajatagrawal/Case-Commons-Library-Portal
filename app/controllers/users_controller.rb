@@ -29,5 +29,9 @@ class UsersController< ApplicationController
 
   def profile
     @user = User.find(params[:id])
+    unless (current_user.admin? || @user == current_user)
+      render text: 'Sorry you are not allowed to view this page'
+
+    end
   end
 end
