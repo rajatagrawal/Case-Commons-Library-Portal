@@ -36,4 +36,8 @@ class BooksController< ApplicationController
       render text: 'You cannot check in this book'
     end
   end
+
+  def error
+
+  end
 end
