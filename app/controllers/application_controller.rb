@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   before_filter :authenticate_user!
 
 rescue_from CanCan::AccessDenied do |exception|
-redirect_to controller: :application, action: :error
+redirect_to controller: :books , action: :error
 end
 
   def welcome

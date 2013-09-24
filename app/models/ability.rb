@@ -7,6 +7,7 @@ class Ability
     # user ||= User.new # guest user (not logged in)
     alias_action :checkout, to: :read
     alias_action :checkin, to: :read
+    alias_action :error, to: :read
       if user.admin?
         can :manage, Book
       else
