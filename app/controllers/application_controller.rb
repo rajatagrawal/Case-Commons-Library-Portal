@@ -7,11 +7,14 @@ redirect_to controller: :books , action: :error
 end
 
   def welcome
+    if user_signed_in?
+      redirect_to homepage_path
+    end
 
   end
 
   def after_sign_in_path_for(resource)
-    profile_path(resource)
+    user_profile_path(resource)
   end
 
   def error

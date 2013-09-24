@@ -3,6 +3,7 @@ LibraryCc::Application.routes.draw do
   devise_for :users
 
   root to: 'application#welcome'
+  get 'profile', to: 'users#profile', as: 'homepage'
 
   # get '/users/:id', to: 'users#show', as: 'users'
 
@@ -11,7 +12,7 @@ LibraryCc::Application.routes.draw do
   resources :users
   post '/books/checkout', to: 'books#checkout', as: 'checkout'
   post '/books/checkin', to: 'books#checkin', as: 'checkin'
-  get 'users/profile/:id', to: 'users#profile', as: 'profile'
+  get 'users/profile/:id', to: 'users#profile', as: 'user_profile'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
