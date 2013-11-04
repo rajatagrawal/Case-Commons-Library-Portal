@@ -36,6 +36,7 @@ group :development, :test do
   gem 'pry-debugger'
   gem 'awesome_print'
   gem 'devise'
+  gem 'capybara'
 end
 
 # To use ActiveModel has_secure_password
