@@ -38,6 +38,8 @@ group :development, :test do
   gem 'awesome_print'
   gem 'devise'
   gem 'capybara'
+  gem 'selenium-webdriver'
+  gem 'factory_girl'
 end
 
 # To use ActiveModel has_secure_password
