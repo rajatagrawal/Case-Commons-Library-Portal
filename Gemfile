@@ -7,6 +7,7 @@ gem 'rails'
 
 gem 'sqlite3'
 gem 'cancan'
+gem 'pg'
 
 
 # Gems used only for assets and not required

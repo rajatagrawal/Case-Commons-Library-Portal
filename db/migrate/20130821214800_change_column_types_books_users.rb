@@ -6,7 +6,7 @@ class ChangeColumnTypesBooksUsers < ActiveRecord::Migration
 
     change_column :users, :first_name, :string
     change_column :users, :last_name, :string
-    change_column :users, :email_address, :string
+    change_column :users, :email, :string
   end
 
   def down
@@ -16,6 +16,6 @@ class ChangeColumnTypesBooksUsers < ActiveRecord::Migration
 
     change_column :users, :first_name, :text
     change_column :users, :last_name, :text
-    change_column :users, :email_address, :text
+    change_column :users, :email, :text
   end
 end
