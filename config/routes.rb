@@ -10,7 +10,7 @@ LibraryCc::Application.routes.draw do
   get 'books/error', to: 'books#error', as: 'error'
   resources :books
   resources :users
-  post '/books/checkout', to: 'books#checkout', as: 'checkout'
+  post '/books/:id/checkout', to: 'books#checkout', as: 'checkout'
   post '/books/checkin', to: 'books#checkin', as: 'checkin'
   get 'users/profile/:id', to: 'users#profile', as: 'user_profile'
   # The priority is based upon order of creation:
