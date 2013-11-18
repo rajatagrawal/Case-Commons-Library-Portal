@@ -1,5 +1,11 @@
-rajat:
-  email: 'rajat@rajat.com'
-  first_name: 'Rajat'
-  last_name: 'Agrawal'
+employee:
+  email: 'employee@casecommons.org'
+  first_name: 'EmployeeFirstName'
+  last_name: 'EmployeeLastName'
+  encrypted_password: '$2a$10$z1sHvESG8fZlJo9bW6DC4eU7BhWXwbfvr075an/v/lc4Z2by2Ft/a'
+
+admin:
+  email: 'admin@casecommons.org'
+  first_name: 'AdminFirstName'
+  last_name: 'AdminLastName'
   encrypted_password: '$2a$10$z1sHvESG8fZlJo9bW6DC4eU7BhWXwbfvr075an/v/lc4Z2by2Ft/a'
