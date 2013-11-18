@@ -26,6 +26,7 @@ gem 'jquery-rails'
 
 group :test do
   gem 'shoulda-matchers'
+  # gem 'fixture-builder'
 end
 
 group :development, :test do
