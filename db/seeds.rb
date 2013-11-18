@@ -19,3 +19,9 @@
               last_name: Faker::Name.last_name,
               email: Faker::Internet.email)
 end
+
+User.create(first_name: 'Rajat',
+            last_name: 'Agrawal',
+            email: 'rajat@library.casecommons.org',
+            password: 'Password123',
+            role: 'admin')
