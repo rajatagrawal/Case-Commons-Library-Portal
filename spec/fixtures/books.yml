@@ -1,0 +1,11 @@
+book1:
+  title: 'Book 1 title'
+  author: 'Book 1 author'
+  publisher: 'Book 1 publisher'
+  price: 10
+
+book2:
+  title: 'Book 2 title'
+  author: 'Book 2 author'
+  publisher: 'Book 2 publisher'
+  price: 20
