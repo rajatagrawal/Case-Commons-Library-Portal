@@ -20,9 +20,10 @@ class BooksController< ApplicationController
     if @book.user.blank?
       @book.user = current_user
       @book.save!
-      redirect_to action: :index
+      redirect_to user_profile_path(@book.user)
     else
-      render text: 'You can not check out this book.'
+      render text: "You can not check out this book because this book has already been issued by '#{@book.user.first_name + ' ' + @book.user.last_name}."
+
     end
 
   end
