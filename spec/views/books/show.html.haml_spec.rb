@@ -13,6 +13,10 @@ describe 'books/show' do
     it 'shows a delete button' do
       expect(page).to have_button('Delete Book')
     end
+
+    it 'shows an edit button' do
+      expect(page).to have_button('Edit Book')
+    end
   end
 
   context 'when the book is checked out' do
