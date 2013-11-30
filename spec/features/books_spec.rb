@@ -27,4 +27,20 @@ feature 'book', js:true do
     expect(current_path).to eq user_profile_path(users(:employee_with_checked_out_books))
     expect(page).to_not have_button('Check In')
   end
+
+  scenario 'Admin adds a book' do
+    login_in_as users(:admin)
+    expect(page).to have_button('Add a book')
+    click_button 'Add a book'
+    expect(current_path).to eq new_book_path
+    fill_in 'Enter the Title of the book', with: 'NewBookTitle'
+    fill_in 'Enter the Author of the book', with: 'NewBookAuthor'
+    fill_in 'Enter the Publisher of the book', with: 'NewBookPublisher'
+    fill_in 'Enter the Price of the book', with: 123
+    click_button 'Add the book'
+    expect(current_path).to eq user_profile_path(users(:admin))
+    expect(page).to have_content('Added a new book successfully')
+    visit books_path
+    expect(page).to have_content('NewBookTitle')
+  end
 end
