@@ -8,6 +8,7 @@
   %th Status
   - if current_user.admin?
     %th Delete Book?
+    %th Edit Book?
   - @books.each do |book|
     %tr
       %td
@@ -24,7 +25,9 @@
           = book.user.first_name + ' ' + book.user.last_name
         - else
           = button_to 'Checkout', book_path(book), method: :get
-      %td
-        - if current_user.admin?
+      - if current_user.admin?
+        %td
           = button_to 'Delete Book', book_path(book), method: :get
+        %td
+          = button_to 'Edit Book', book_path(book), method: :get
 = button_to 'Back', :back, method: :get

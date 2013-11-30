@@ -17,6 +17,14 @@ describe 'books/index' do
     it 'shows a table header to delete the book' do
       expect(page).to have_css('th', text: 'Delete Book?')
     end
+
+    it 'shows a table header to edit the book' do
+      expect(page).to have_css('th', text: 'Edit Book?')
+    end
+
+    it 'shows an edit button' do
+      expect(page).to have_button('Edit Book')
+    end
   end
 end
 
