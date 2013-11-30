@@ -62,4 +62,26 @@ feature 'book', js:true do
     visit books_path
     expect(page).to_not have_content(book.title)
   end
+
+  scenario 'Admin edits a book' do
+    login_in_as users(:admin)
+    expect(page).to have_button('Edit a book')
+    click_button 'Edit a book'
+    expect(current_path).to eq books_path
+    book = Book.first
+    row = page.find('tr',text: book.title)
+    within row do
+      click_button 'Edit Book'
+    end
+    expect(current_path).to eq book_path(book)
+    click_button 'Edit Book'
+    expect(current_path).to eq edit_book_path(book)
+    fill_in 'Enter the title for the book', with: 'Updated Title'
+    click_button 'Save'
+    page.driver.browser.switch_to.alert.accept
+    expect(current_path).to eq user_profile_path(users(:admin))
+    expect(page).to have_content('Successfully updated the book')
+    visit books_path
+    expect(page).to have_content('Updated Title')
+  end
 end
