@@ -12,8 +12,11 @@ describe 'users/profile' do
     end
 
     it 'shows the add a new book button' do
-      binding.pry
       expect(page).to have_button('Add a book')
+    end
+
+    it 'shows the delete a book button' do
+      expect(page).to have_button('Delete a book')
     end
   end
 end
