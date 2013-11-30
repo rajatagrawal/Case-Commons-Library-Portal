@@ -43,4 +43,23 @@ feature 'book', js:true do
     visit books_path
     expect(page).to have_content('NewBookTitle')
   end
+
+  scenario 'Admin deletes a book' do
+    login_in_as users(:admin)
+    expect(page).to have_button('Delete a book')
+    click_button 'Delete a book'
+    expect(current_path).to eq books_path
+    book = Book.first
+    row = page.find('tr',text: book.title)
+    within row do
+      click_button 'Delete Book'
+    end
+    expect(current_path).to eq book_path(book)
+    click_button 'Delete Book'
+    page.driver.browser.switch_to.alert.accept
+    expect(current_path).to eq user_profile_path(users(:admin))
+    expect(page).to have_content('Successfully deleted the book')
+    visit books_path
+    expect(page).to_not have_content(book.title)
+  end
 end
