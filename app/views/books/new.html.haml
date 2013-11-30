@@ -1,6 +1,9 @@
+%h2
+  Add a Book
+
 = simple_form_for @book do |f|
-  = f.input :title
-  = f.input :author
-  = f.input :publisher
-  = f.input :price
-  = f.button :submit, label: "this is my label"
+  = f.input :title, label: 'Enter the Title of the book'
+  = f.input :author, label: 'Enter the Author of the book'
+  = f.input :publisher, label: 'Enter the Publisher of the book'
+  = f.input :price, label: 'Enter the Price of the book'
+  = f.button :submit, "Add the book"
