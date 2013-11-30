@@ -1,7 +1,9 @@
+%h2
+  Edit the book
 = simple_form_for @book do |f|
-  = f.input :title
-  = f.input :author
-  = f.input :publisher
-  = f.input :price
-  = f.button :submit, 'Save'
+  = f.input :title, label: 'Enter the title for the book'
+  = f.input :author, label: 'Enter the author for the book'
+  = f.input :publisher, label: 'Enter the publisher for the book'
+  = f.input :price,label: 'Enter the price for the book'
+  = f.button :submit, 'Save', confirm: 'Are you sure?'
 = button_to 'Back', book_path(@book.id), method: :get
