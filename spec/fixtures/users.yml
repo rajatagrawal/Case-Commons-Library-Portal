@@ -8,6 +8,7 @@ admin:
   email: 'admin@casecommons.org'
   first_name: 'AdminFirstName'
   last_name: 'AdminLastName'
+  role: 'admin'
   encrypted_password: '$2a$10$z1sHvESG8fZlJo9bW6DC4eU7BhWXwbfvr075an/v/lc4Z2by2Ft/a'
 
 employee_with_checked_out_books:
