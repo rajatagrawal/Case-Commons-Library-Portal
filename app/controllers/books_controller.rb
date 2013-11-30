@@ -9,6 +9,8 @@ class BooksController< ApplicationController
 
   def create
     @book.save!
+    flash[:success] = 'Added a new book successfully'
+    redirect_to user_profile_path(current_user)
   end
 
   def destroy

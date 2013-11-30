@@ -4,6 +4,28 @@ describe BooksController do
 
   fixtures :all
 
+  describe 'POST #create' do
+    let(:book) do
+      book = Book.new
+      book.title = 'BookTitle'
+      book.author = 'BookAuthor'
+      book.publisher = 'BookPublisher'
+      book.price = '123'
+      book
+    end
+
+    before do
+      sign_in(users(:admin))
+      post :create, book: book.attributes.except('user_id','updated_at','created_at')
+    end
+    it 'redirects to the user profile page' do
+      expect(response).to redirect_to user_profile_path(users(:admin))
+    end
+
+    it 'shows a flash message of successful creation of the book' do
+      expect(flash[:success]).to eq 'Added a new book successfully'
+    end
+  end
   describe 'POST #checkout' do
     let(:book_to_checkout) { books(:book1) }
     before do
