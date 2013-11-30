@@ -8,6 +8,13 @@
 = @book.publisher
 %p Price
 = @book.price
+%p Issued by
+= @book.user ? (@book.user.first_name + @book.user.last_name) : 'None'
+
+- if @book.checked_out?
+  = button_to 'Check In', checkin_path(@book.id), confirm: 'Are you sure?'
+- else
+  = button_to 'Check Out', checkout_path(@book.id)
 
 = button_to 'Checkout on the book page', checkout_path(@book.id)
 = button_to "Back", books_path, method: :get
