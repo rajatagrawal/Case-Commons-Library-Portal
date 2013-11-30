@@ -10,7 +10,7 @@ describe BooksController do
       book.title = 'BookTitle'
       book.author = 'BookAuthor'
       book.publisher = 'BookPublisher'
-      book.price = '123'
+      book.price = 123
       book
     end
 
@@ -18,6 +18,11 @@ describe BooksController do
       sign_in(users(:admin))
       post :create, book: book.attributes.except('user_id','updated_at','created_at')
     end
+
+    it 'creates a new book' do
+      expect(Book.find_by_title('BookTitle').id).to_not be_nil
+    end
+
     it 'redirects to the user profile page' do
       expect(response).to redirect_to user_profile_path(users(:admin))
     end
@@ -25,6 +30,39 @@ describe BooksController do
     it 'shows a flash message of successful creation of the book' do
       expect(flash[:success]).to eq 'Added a new book successfully'
     end
+  end
+
+  describe 'PUT #update' do
+    let(:book) do
+      book = Book.first
+      book.title = 'UpdateBookTitle'
+      book.author = 'UpdateBookAuthor'
+      book.publisher = 'UpdateBookPublisher'
+      book.price = 123
+      book
+    end
+    let(:book_id) { book.id }
+
+    before do
+      sign_in(users(:admin))
+      put :update, book: book.attributes.except('user_id','updated_at','created_at'), id: book_id
+    end
+
+    it 'updates the book details' do
+      expect(Book.find(book_id).title).to eq 'UpdateBookTitle'
+      expect(Book.find(book_id).author).to eq 'UpdateBookAuthor'
+      expect(Book.find(book_id).publisher).to eq 'UpdateBookPublisher'
+      expect(Book.find(book_id).price).to eq 123
+    end
+
+    it 'redirects to the user profile page' do
+      expect(response).to redirect_to user_profile_path(users(:admin))
+    end
+
+    it 'shows a flash message of successful creation of the book' do
+      expect(flash[:success]).to eq 'Successfully updated the book'
+    end
+
   end
 
   describe 'DELETE #destroy' do

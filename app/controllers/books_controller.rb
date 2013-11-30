@@ -3,8 +3,8 @@ class BooksController< ApplicationController
 
   def update
     @book.update_attributes params[:book]
-    flash.now[:notice] = "The books has been successfully updated!"
-    redirect_to action: :show
+    flash[:success] = "Successfully updated the book"
+    redirect_to user_profile_path(current_user)
   end
 
   def create
