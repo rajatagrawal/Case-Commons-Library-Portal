@@ -18,5 +18,9 @@ describe 'users/profile' do
     it 'shows the delete a book button' do
       expect(page).to have_button('Delete a book')
     end
+
+    it 'shows edit a book button' do
+      expect(page).to have_button('Edit a book')
+    end
   end
 end
