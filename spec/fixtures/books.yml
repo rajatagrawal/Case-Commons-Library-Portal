@@ -9,3 +9,16 @@ book2:
   author: 'Book 2 author'
   publisher: 'Book 2 publisher'
   price: 20
+
+issued_book:
+  title: 'Issued book title'
+  author: 'Issued book author'
+  publisher: 'Issued book publisher'
+  price: 30
+  user_id: 1
+
+unissued_book:
+  title: 'Unissued book title'
+  author: 'Unissued book author'
+  publisher: 'Unissued book publisher'
+  price: 30
