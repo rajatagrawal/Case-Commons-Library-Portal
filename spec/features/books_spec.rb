@@ -12,7 +12,7 @@ feature 'book', js:true do
       page.find_button('Checkout').click
     end
     expect(current_path).to eq book_path(book)
-    page.find_button('Checkout').click
+    page.find_button('Check Out').click
     expect(current_path).to eq user_profile_path(users(:employee))
     expect(page).to have_content(book.title)
   end

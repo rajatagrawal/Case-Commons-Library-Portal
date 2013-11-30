@@ -12,7 +12,7 @@ describe 'books/show' do
 
     it 'shows who the book is issued to ' do
       expect(page).to have_content('Issued by')
-      expect(page).to have_content(book.user.first_name + book.user.last_name)
+      expect(page).to have_content(book.user.first_name + ' ' + book.user.last_name)
 
     end
 

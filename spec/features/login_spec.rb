@@ -5,7 +5,7 @@ feature 'login page', js: true do
 
   scenario 'user logs in successfully' do
     visit new_user_session_path
-    fill_in 'Email', with: users(:rajat).email
+    fill_in 'Email', with: users(:employee).email
     fill_in 'Password', with: 'Password123'
     click_button('Sign in')
     expect(page).to have_content('Signed in successfully.')
@@ -13,7 +13,7 @@ feature 'login page', js: true do
 
   scenario 'user logs in unsuccessfully' do
     visit new_user_session_path
-    fill_in 'Email', with: users(:rajat).email
+    fill_in 'Email', with: users(:employee).email
     fill_in 'Password', with: 'wrong_password'
     click_button('Sign in')
     expect(current_path).to eq new_user_session_path
