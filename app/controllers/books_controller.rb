@@ -14,8 +14,9 @@ class BooksController< ApplicationController
   end
 
   def destroy
-    @book.destroy!
-    redirect_to action: :index
+    @book.destroy
+    flash[:success] = 'Successfully deleted the book'
+    redirect_to user_profile_path(current_user)
   end
 
   def checkout

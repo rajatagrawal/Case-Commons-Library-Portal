@@ -26,6 +26,26 @@ describe BooksController do
       expect(flash[:success]).to eq 'Added a new book successfully'
     end
   end
+
+  describe 'DELETE #destroy' do
+    let(:book_id) { Book.first.id }
+    before do
+      sign_in(users(:admin))
+      delete :destroy, id: book_id
+    end
+    it 'deletes the book' do
+      expect{ Book.find(book_id) }.to raise_error(ActiveRecord::RecordNotFound)
+    end
+
+    it 'redirects to the current user profile page' do
+      expect(response).to redirect_to user_profile_path(users(:admin))
+    end
+
+    it 'shows a flash message of successful deletion of the book' do
+      expect(flash[:success]).to eq 'Successfully deleted the book'
+    end
+  end
+
   describe 'POST #checkout' do
     let(:book_to_checkout) { books(:book1) }
     before do
