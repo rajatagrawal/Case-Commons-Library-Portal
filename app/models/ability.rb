@@ -8,11 +8,16 @@ class Ability
     alias_action :checkout, to: :read
     alias_action :checkin, to: :read
     alias_action :error, to: :read
-      if user.admin?
-        can :manage, Book
-      else
-        can :read, Book
-      end
+    if user.admin?
+      can :manage, Book
+    else
+      can :read, Book
+    end
+    if user.admin?
+      can :manage, User
+    else
+      can :read, User, id: user.id
+    end
     #
     # The first argument to `can` is the action you are giving the user
     # permission to do.

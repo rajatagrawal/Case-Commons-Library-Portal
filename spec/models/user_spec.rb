@@ -12,6 +12,7 @@ describe User do
   it 'has books' do
     expect(subject).to have_many :books
   end
+
 end
 
 describe '#admin?' do

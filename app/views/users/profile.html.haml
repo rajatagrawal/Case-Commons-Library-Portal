@@ -32,5 +32,7 @@
     = button_to 'Add a book', new_book_path, method: :get
     = button_to 'Delete a book', books_path, method: :get
     = button_to 'Edit a book', books_path, method: :get
+    = button_to 'Add a user', new_user_path, method: :get
+
 %p
   = link_to 'Sign out', destroy_user_session_path, method: :delete
