@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   before_filter :authenticate_user!
 
   rescue_from CanCan::AccessDenied do |exception|
-    redirect_to controller: :books , action: :error
+    redirect_to controller: :application, action: :error
   end
 
   def welcome
@@ -15,9 +15,5 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
     user_profile_path(resource)
-  end
-
-  def error
-
   end
 end
