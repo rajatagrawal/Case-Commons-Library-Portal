@@ -1,16 +1,5 @@
 class UsersController< ApplicationController
   load_and_authorize_resource
-  def index
-    @users = User.all
-  end
-
-  def show
-    # @user = User.find(params[:id])
-  end
-
-  def edit
-    @user = User.find(params[:id])
-  end
 
   def destroy
     @user = User.find(params[:id]).destroy
@@ -21,19 +10,11 @@ class UsersController< ApplicationController
   end
 
   def create
-    @user = params[:user]
-    @user.save!
-  end
-
-  def profile
-    if params[:id] == nil
-      @user = current_user
+    if @user.save
+      flash[:success] = 'Added a new user successfully.'
+      redirect_to user_profile_path(current_user)
     else
-      if current_user.id == params[:id].to_i || current_user.admin?
-        @user = User.find(params[:id])
-      else
-        render text: 'Sorry, you are not allowed to view this page.'
-      end
+      redirect_to error_path
     end
   end
 end
