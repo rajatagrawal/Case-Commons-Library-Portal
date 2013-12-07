@@ -1,2 +1,10 @@
-= simple_form_for @user do |f|
+%h2
+  Create a new user
+= simple_form_for @user, url: users_path do |f|
   = f.input :first_name, label: 'Enter First Name'
+  = f.input :last_name, label: 'Enter Last Name'
+  = f.input :email, label: 'Enter Email Address'
+  = f.input :password, required: true
+  = f.input :password_confirmation, label: 'Password Confirmation', required: true
+  = f.input :role, label: 'Role', collection: ['employee','admin'], as: :radio_buttons
+  = f.button :submit, 'Add User', confirm: 'Are you sure?'
