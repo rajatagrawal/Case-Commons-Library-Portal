@@ -42,4 +42,21 @@ feature 'users',js:true do
     expect(page).to have_content('Updated First Name')
   end
 
+  scenario 'Admin deletes a user' do
+    login_in_as users(:admin)
+    expect(page).to have_button('Delete a user')
+    click_button 'Delete a user'
+    expect(current_path).to eq users_path
+    user = User.first
+    row = page.find('tr', text: user.first_name)
+    within row do
+      click_button 'Delete User'
+    end
+    page.driver.browser.switch_to.alert.accept
+    expect(current_path).to eq user_profile_path(users(:admin))
+    expect(page).to have_content('Successfully deleted the user.')
+    visit users_path
+    expect(page).to_not have_content(user.first_name)
+  end
+
 end
