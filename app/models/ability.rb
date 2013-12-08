@@ -14,6 +14,7 @@ class Ability
     end
     if user.admin?
       can :manage, User
+      cannot :destroy, User, id: user.id
     else
       can :read, User, id: user.id
       can :profile, User, id: user.id
