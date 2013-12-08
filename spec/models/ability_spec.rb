@@ -62,6 +62,10 @@ describe 'abilities of the user' do
         expect(abilities).to be_able_to(:manage, user)
         expect(abilities).to be_able_to(:manage, user2)
       end
+
+      it 'should not be delete her own user account' do
+        expect(abilities).to_not be_able_to(:destroy, user)
+      end
     end
   end
 end
