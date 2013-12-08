@@ -1,20 +1,23 @@
 %h2 Users
 %table{border: '2px'}
-  %th
-    Name
-  %th
-    Email Address
-  %th
-    Books Issued
+  %tr
+    %th
+      Name
+    %th
+      Email Address
+    %th
+      Books Issued
+    %th
+      Edit User?
   - @users.each do |user|
     %tr
       %td
-        = user.first_name + user.last_name
+        = user.first_name + ' ' + user.last_name
       %td
         = user.email
       %td
         - user.books.each do |book|
           %li
             = book.title
-
-= button_to 'Back', :back
+      %td
+        = button_to 'Edit User', edit_user_path(user), method: :get
