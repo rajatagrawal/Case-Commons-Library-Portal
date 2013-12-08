@@ -26,5 +26,9 @@ describe 'users/profile' do
     it 'shows add a user button' do
       expect(page).to have_button('Add a user')
     end
+
+    it 'shows edit a user button' do
+      expect(page).to have_button('Edit a user')
+    end
   end
 end
