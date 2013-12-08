@@ -1,0 +1,10 @@
+%h2
+  Edit User
+= simple_form_for @user do |f|
+  = f.input :first_name, label: 'Enter First Name'
+  = f.input :last_name, label: 'Enter Last Name'
+  = f.input :email, label: 'Enter Email Address'
+  = f.input :role, collection: ['employee','admin'], as: :radio_buttons
+  = f.button :submit, 'Update user', confirm: 'Are you sure?'
+= button_to 'Go to home', user_profile_path(current_user), method: :get
+
