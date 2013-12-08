@@ -6,7 +6,12 @@ class UsersController< ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
+    if @user.update_attributes(params[:user])
+      flash[:success] = 'Successfully updated the user.'
+      redirect_to user_profile_path(current_user)
+    else
+      redirect_to error_path
+    end
   end
 
   def create

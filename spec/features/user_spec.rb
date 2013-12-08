@@ -22,4 +22,24 @@ feature 'users',js:true do
     expect(page).to have_content('NewUserFirstName')
   end
 
+  scenario 'Admin edits a user' do
+    login_in_as users(:admin)
+    expect(page).to have_button('Edit a user')
+    click_button 'Edit a user'
+    expect(current_path).to eq users_path
+    user = User.first
+    row = page.find('tr', text: user.first_name)
+    within row do
+      click_button 'Edit User'
+    end
+    expect(current_path).to eq edit_user_path(user)
+    fill_in 'Enter First Name', with: 'Updated First Name'
+    click_button 'Update user'
+    page.driver.browser.switch_to.alert.accept
+    expect(current_path).to eq user_profile_path(users(:admin))
+    expect(page).to have_content('Successfully updated the user.')
+    visit users_path
+    expect(page).to have_content('Updated First Name')
+  end
+
 end

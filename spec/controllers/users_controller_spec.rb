@@ -3,6 +3,60 @@ require 'spec_helper'
 describe UsersController do
 
   fixtures :all
+  describe 'PUT #update' do
+
+    admin_first_name = ''
+    before do
+      sign_in(users(:admin))
+      admin_first_name = users(:admin).first_name
+      put :update, user: user_params, id:users(:admin).id
+    end
+
+    context 'with valid params' do
+      let(:user_params) do
+        {
+          "first_name" => 'ValidFirstName',
+          "last_name" => 'ValidLastName',
+          "email" => 'ValidEmail@email.com',
+          "role" => 'employee'
+        }
+      end
+
+      it 'updates the attributes of the user' do
+        expect(users(:admin).reload.first_name).to eq 'ValidFirstName'
+      end
+
+      it 'redirects to the user profile path' do
+        expect(response).to redirect_to user_profile_path(users(:admin))
+      end
+
+      it 'shows a flash message of successful user update' do
+        expect(flash[:success]).to eq 'Successfully updated the user.'
+
+      end
+
+    end
+
+    context 'with invalid params' do
+      let(:user_params) do
+        {
+          "first_name" => '',
+          "last_name" => 'ValidLastName',
+          "email" => 'ValidEmail@email.com',
+          "role" => 'employee'
+        }
+      end
+      it 'does not update the attributes of the user' do
+        expect(users(:admin).reload.first_name).to eq admin_first_name
+
+      end
+
+      it 'redirects to the application error page' do
+        expect(response).to redirect_to error_path
+      end
+
+    end
+  end
   describe 'GET #new' do
     before do
       sign_in(users(:admin))
