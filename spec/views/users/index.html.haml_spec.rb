@@ -16,5 +16,11 @@ describe 'users/index' do
     it 'shows an edit user button' do
       expect(page).to have_button('Edit User')
     end
+    it 'shows table header to delete a user' do
+      expect(page).to have_content('Delete User?')
+    end
+    it 'shows a delete user button' do
+      expect(page).to have_button('Delete User')
+    end
   end
 end
