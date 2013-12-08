@@ -8,9 +8,8 @@ class ApplicationController < ActionController::Base
 
   def welcome
     if user_signed_in?
-      redirect_to homepage_path
+      redirect_to user_profile_path(current_user)
     end
-
   end
 
   def after_sign_in_path_for(resource)
