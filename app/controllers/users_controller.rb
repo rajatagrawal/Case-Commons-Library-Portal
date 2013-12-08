@@ -2,7 +2,13 @@ class UsersController< ApplicationController
   load_and_authorize_resource
 
   def destroy
-    @user = User.find(params[:id]).destroy
+    @user.books.each do |book|
+      book.user_id=nil
+      book.save!
+    end
+    @user.destroy
+    flash[:success] = 'Successfully deleted the user.'
+    redirect_to user_profile_path(current_user)
   end
 
   def update

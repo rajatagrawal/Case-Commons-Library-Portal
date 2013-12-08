@@ -3,6 +3,27 @@ require 'spec_helper'
 describe UsersController do
 
   fixtures :all
+  describe 'DELETE #destroy' do
+    let(:user) { users(:employee) }
+    before do
+      sign_in(users(:admin))
+      delete :destroy, id: user
+    end
+
+    it 'deletes the user' do
+      expect{ User.find(users(:employee))}.to raise_error
+    end
+
+
+    it 'gives a flash message of successful delete' do
+      expect(flash[:success]).to eq 'Successfully deleted the user.'
+    end
+
+    it 'redirects to the user profile page' do
+      expect(response).to redirect_to user_profile_path(users(:admin))
+    end
+
+  end
   describe 'PUT #update' do
 
     admin_first_name = ''
