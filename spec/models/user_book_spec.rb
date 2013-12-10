@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe IssuedBook do
+describe UserBook do
   it 'belongs to a user' do
     expect(subject).to belong_to :user
   end

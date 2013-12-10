@@ -23,15 +23,16 @@ ActiveRecord::Schema.define(:version => 20131208141000) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "issued_books", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "book_id"
-    t.datetime "issued_on"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+  create_table "user_books", :force => true do |t|
+    t.integer  "user_id",     :null => false
+    t.integer  "book_id",     :null => false
+    t.datetime "issued_on",   :null => false
+    t.datetime "returned_on", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
-  add_index "issued_books", ["id"], :name => "index_issued_books_on_id"
+  add_index "user_books", ["id"], :name => "index_user_books_on_id"
 
   create_table "users", :force => true do |t|
     t.string   "first_name"
