@@ -24,9 +24,9 @@ ActiveRecord::Schema.define(:version => 20131208141000) do
   end
 
   create_table "issued_books", :force => true do |t|
-    t.integer  "user_id",    :null => false
-    t.integer  "book_id",    :null => false
-    t.datetime "issued_on",  :null => false
+    t.integer  "user_id"
+    t.integer  "book_id"
+    t.datetime "issued_on"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
