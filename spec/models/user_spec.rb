@@ -9,8 +9,62 @@ describe User do
     expect(subject).to validate_presence_of :role
   end
 
-  it 'has books' do
-    expect(subject).to have_many :books
+  it 'has many user_books' do
+    expect(subject).to have_many :user_books
+  end
+
+end
+
+describe '#current_issued_books' do
+  fixtures :all
+
+  let(:user) { users(:employee) }
+  let(:user_book1) {
+    UserBook.new(
+      user_id: user.id,
+      issued_on: 3.days.ago,
+    )
+  }
+
+  let(:user_book2) {
+    UserBook.new(
+      user_id: user.id,
+      issued_on: 3.days.ago,
+      returned_on: 1.day.ago,
+    )
+  }
+
+  it 'returns the currently issued books' do
+    allow(user).to receive(:user_books).and_return([user_book1,user_book2])
+    expect(user.current_issued_books).to include user_book1
+    expect(user.current_issued_books).to_not include user_book2
+  end
+
+end
+
+describe '#all_issued_books' do
+  fixtures :all
+
+  let(:user) { users(:employee) }
+  let(:user_book1) {
+    UserBook.new(
+      user_id: user.id,
+      issued_on: 3.days.ago,
+    )
+  }
+
+  let(:user_book2) {
+    UserBook.new(
+      user_id: user.id,
+      issued_on: 3.days.ago,
+      returned_on: 1.day.ago,
+    )
+  }
+
+  it 'returns the currently issued books' do
+    allow(user).to receive(:user_books).and_return([user_book1,user_book2])
+    expect(user.all_issued_books).to include user_book1
+    expect(user.all_issued_books).to include user_book2
   end
 
 end
