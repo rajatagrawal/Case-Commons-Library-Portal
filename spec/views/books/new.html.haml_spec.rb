@@ -14,6 +14,7 @@ describe 'books/new' do
     expect(page).to have_content('Enter the Author of the book')
     expect(page).to have_content('Enter the Publisher of the book')
     expect(page).to have_content('Enter the Price of the book')
+    expect(page).to have_content('Enter the quantity of the book')
   end
 
   it 'has an add the book button' do

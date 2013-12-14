@@ -1,6 +1,6 @@
 class Book < ActiveRecord::Base
 
-  attr_accessible :title, :author, :publisher, :price
+  attr_accessible :title, :author, :publisher, :price, :quantity
   belongs_to :user
 
   validates :title, presence: true
