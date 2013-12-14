@@ -27,7 +27,7 @@
           = button_to 'Checkout', book_path(book), method: :get
       - if current_user.admin?
         %td
-          = button_to 'Delete Book', book_path(book), method: :get
+          = button_to 'Delete Book', book_path(book), method: :delete, confirm: 'Are you sure?'
         %td
-          = button_to 'Edit Book', book_path(book), method: :get
+          = button_to 'Edit Book', edit_book_path(book), method: :get
 = button_to 'Back', :back, method: :get

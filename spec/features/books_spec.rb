@@ -55,8 +55,6 @@ feature 'book', js:true do
     within row do
       click_button 'Delete Book'
     end
-    expect(current_path).to eq book_path(book)
-    click_button 'Delete Book'
     page.driver.browser.switch_to.alert.accept
     expect(current_path).to eq user_profile_path(users(:admin))
     expect(page).to have_content('Successfully deleted the book')
@@ -74,8 +72,6 @@ feature 'book', js:true do
     within row do
       click_button 'Edit Book'
     end
-    expect(current_path).to eq book_path(book)
-    click_button 'Edit Book'
     expect(current_path).to eq edit_book_path(book)
     fill_in 'Enter the title for the book', with: 'Updated Title'
     click_button 'Save'
