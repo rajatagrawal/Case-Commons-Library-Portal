@@ -10,12 +10,28 @@ book2:
   publisher: 'Book 2 publisher'
   price: 20
 
-issued_book:
-  title: 'Issued book title'
-  author: 'Issued book author'
-  publisher: 'Issued book publisher'
+unreturned_issued_book:
+  id: 1
+  title: 'Returned Issued book title'
+  author: 'Returned Issued book author'
+  publisher: 'Returned Issued book publisher'
   price: 30
-  user_id: 1
+  quantity : 1
+
+unreturned_issued_book_with_multiple_copies:
+  id: 3
+  title: 'Returned Issued book title'
+  author: 'Returned Issued book author'
+  publisher: 'Returned Issued book publisher'
+  price: 30
+  quantity : 4
+
+returned_issued_book:
+  id: 2
+  title: 'Unreturned Issued book title'
+  author: 'Unreturned Issued book author'
+  publisher: 'Unreturned Issued book publisher'
+  price: 30
 
 unissued_book:
   title: 'Unissued book title'

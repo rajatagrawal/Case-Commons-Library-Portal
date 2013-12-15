@@ -24,3 +24,9 @@ employee_with_checked_out_books:
   last_name: 'EmpBooksLastName'
   encrypted_password: '$2a$10$z1sHvESG8fZlJo9bW6DC4eU7BhWXwbfvr075an/v/lc4Z2by2Ft/a'
 
+employee2_with_checked_out_books:
+  id: 2
+  email: 'employee2_with_checked_out_books@casecommons.org'
+  first_name: 'Emp2BooksFirstName'
+  last_name: 'Emp2BooksLastName'
+  encrypted_password: '$2a$10$z1sHvESG8fZlJo9bW6DC4eU7BhWXwbfvr075an/v/lc4Z2by2Ft/a'
