@@ -20,15 +20,14 @@ class BooksController< ApplicationController
   end
 
   def checkout
-    if @book.user.blank?
-      @book.user = current_user
-      @book.save!
-      redirect_to user_profile_path(current_user)
-    else
-      render text: "You can not check out this book because this book has already been issued by '#{@book.user.first_name + ' ' + @book.user.last_name}."
 
-    end
-
+    UserBook.create(
+      user_id: current_user.id,
+      book_id: @book.id,
+      issued_on: Time.now
+    )
+    flash[:success] = 'Successfully checked out the book'
+    redirect_to user_profile_path(current_user)
   end
 
   def checkin
