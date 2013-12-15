@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me
 
   attr_accessible :first_name, :last_name, :role
-  has_many :user_books
+  has_many :user_books, dependent: :destroy
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :email, presence: true
@@ -19,10 +19,15 @@ class User < ActiveRecord::Base
   end
 
   def current_issued_books
-    user_books.select{ |user_book| user_book.returned_on == nil }
+    current_issued_user_books = user_books.select{ |user_book| user_book.returned_on == nil }
+    current_issued_user_books.map do |user_book|
+      Book.find(user_book.book_id)
+    end
   end
 
   def all_issued_books
-    user_books
+    user_books.map do |user_book|
+      Book.find(user_book.book_id)
+    end
   end
 end
