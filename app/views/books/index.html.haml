@@ -1,33 +1,43 @@
-%h1 List of all the books is
-
-%table{ border: '20' }
-  %th Title
-  %th Author
-  %th Publisher
-  %th Price
-  %th Status
+%h2
+  List of all the books
+%table{ border: '1'}
+  %th
+    Title
+  %th
+    Author
+  %th
+    Publisher
+  %th
+    Quantity
+  %th
+    Status
   - if current_user.admin?
-    %th Delete Book?
-    %th Edit Book?
+    %th
+      Edit Book?
+    %th
+      Delete Book?
   - @books.each do |book|
     %tr
       %td
-        = link_to book.title, book_path(book.id)
+        = book.title
       %td
-        =book.author
+        = book.author
       %td
-        =book.publisher
+        = book.publisher
       %td
-        =book.price
+        = book.quantity
       %td
         - if book.checked_out?
           Checked out by
-          = book.user.first_name + ' ' + book.user.last_name
+          - book.current_users.each do |book_user|
+            %li
+              = book_user.first_name + ' ' + book_user.last_name
+        - if book.can_be_checked_out?
+          = button_to 'Checkout', checkout_path(book.id), confirm: 'Are you sure?'
         - else
-          = button_to 'Checkout', book_path(book), method: :get
+          No more copies left to checkout
       - if current_user.admin?
         %td
-          = button_to 'Delete Book', book_path(book), method: :delete, confirm: 'Are you sure?'
-        %td
           = button_to 'Edit Book', edit_book_path(book), method: :get
-= button_to 'Back', :back, method: :get
+        %td
+          = button_to 'Delete Book', book_path(book), method: :delete, confirm: 'Are you sure?'
