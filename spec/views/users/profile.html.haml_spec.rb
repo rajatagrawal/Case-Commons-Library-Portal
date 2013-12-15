@@ -4,6 +4,23 @@ describe 'users/profile' do
   fixtures :all
   let(:page) { Capybara.string(render) }
 
+  context 'page contents' do
+    let(:user) {
+      user = User.new
+      user.first_name = 'First Name'
+      user.last_name = 'Last Name'
+      user
+    }
+
+    before do
+      assign(:user, user)
+    end
+    it "shows a greeting message with the user's name" do
+      expect(page).to have_content("Hi #{user.full_name} !")
+    end
+
+  end
+
   context 'when the logged in user is admin' do
     let(:user) { users(:admin) }
 
