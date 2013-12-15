@@ -30,4 +30,8 @@ class User < ActiveRecord::Base
       Book.find(user_book.book_id)
     end
   end
+
+  def full_name
+    first_name + ' ' + last_name
+  end
 end

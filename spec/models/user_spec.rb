@@ -91,3 +91,15 @@ describe '#admin?' do
     end
   end
 end
+
+describe '#full_name' do
+  let(:full_name_user) do
+    user = User.new
+    user.first_name = 'First Name'
+    user.last_name = 'Last Name'
+    user
+  end
+  it 'returns the full name of the user' do
+    expect(full_name_user.full_name).to eq 'First Name Last Name'
+  end
+end
