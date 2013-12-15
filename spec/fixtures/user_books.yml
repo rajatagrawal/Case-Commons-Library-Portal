@@ -1,0 +1,25 @@
+unreturned_user_book:
+  user_id: 1
+  book_id: 1
+  issued_on: '12/1/2013'
+
+unreturned_user_book_with_multiple_copies:
+  user_id: 1
+  book_id: 3
+  issued_on: '12/1/2013'
+
+second_issue_of_same_book:
+  user_id: 2
+  book_id: 3
+  issued_on: '12/4/2013'
+
+third_issue_of_same_book:
+  user_id: 1
+  book_id: 3
+  issued_on: '12/4/2013'
+
+returned_user_book:
+  user_id: 1
+  book_id: 2
+  issued_on: '12/1/2013'
+  returned_on: '12/2/2013'
