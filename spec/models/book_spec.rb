@@ -10,26 +10,125 @@ describe Book do
   end
 
   it 'belongs to a user' do
-    expect(subject).to belong_to(:user)
+    expect(subject).to have_many(:user_books)
   end
 
 end
 
-describe '#checked_out?' do
-  let(:book) { Book.new }
+describe '#current_users' do
+  fixtures :all
 
-  context 'if the book is issued' do
+  let(:book) { Book.new }
+  let(:user_book1) {
+    UserBook.new(
+      user_id: users(:employee).id,
+      issued_on: 3.days.ago
+    )}
+
+  let(:user_book2) {
+    UserBook.new(
+      user_id: users(:employee2).id,
+      issued_on: 3.days.ago,
+      returned_on: 1.day.ago
+    )}
+
+  it 'returns the current users who have issued the book' do
+    Book.any_instance.stub(:user_books).and_return([user_book1,user_book2])
+    expect(book.current_users).to include users(:employee)
+    expect(book.current_users).to_not include users(:employee2)
+  end
+end
+
+describe '#all_users' do
+  fixtures :all
+
+  let(:book) { Book.new }
+  let(:user_book1) {
+    UserBook.new(
+      user_id: users(:employee).id,
+      issued_on: 3.days.ago
+    )}
+
+  let(:user_book2) {
+    UserBook.new(
+      user_id: users(:employee2).id,
+      issued_on: 3.days.ago,
+      returned_on: 1.day.ago
+    )}
+
+  it 'returns all the users who have issued the book up till now' do
+    Book.any_instance.stub(:user_books).and_return([user_book1,user_book2])
+    expect(book.all_users).to include users(:employee)
+    expect(book.all_users).to include users(:employee2)
+  end
+end
+
+describe '#checked_out?' do
+  fixtures :books
+  context 'if the book is issued and not returned' do
+    let(:book) { books(:unreturned_issued_book) }
     it 'should return true' do
-      book.user = User.new
-      expect(book.checked_out?).to be(true)
+      expect(book.checked_out?).to eq true
+    end
+
+  end
+
+  context 'if the book is issued and returned' do
+    let(:book) { books(:returned_issued_book) }
+    it 'should return false' do
+      expect(book.checked_out?).to eq false
     end
 
   end
 
   context 'if the book is not issued' do
+    let(:book) { books(:unissued_book) }
     it 'should return false' do
-      expect(book.checked_out?).to eq(false)
+      expect(book.checked_out?).to eq false
+    end
+  end
+end
+
+describe '#can_be_checked_out?' do
+  fixtures :books
+
+  context 'when the quantity of books is 1 and the book is issued' do
+    let(:book) { books(:unreturned_issued_book) }
+    it 'returns false' do
+      expect(book.can_be_checked_out?).to eq false
     end
   end
 
+  context 'when the quantity of books more than 1 and less number of books are issued' do
+    let(:book) { books(:unreturned_issued_book_with_multiple_copies) }
+    it 'returns true' do
+      expect(book.can_be_checked_out?).to eq true
+    end
+  end
+
+  context 'when the book is not issued' do
+    let(:book) { books(:unissued_book) }
+    it 'returns true' do
+      expect(book.can_be_checked_out?).to eq true
+    end
+  end
+end
+
+describe '#number_of_issued_copies' do
+  fixtures :all
+  context 'when the book is not issued' do
+    let(:book) { books(:unissued_book) }
+    it 'returns 0' do
+      expect(book.number_of_issued_copies).to eq 0
+    end
+  end
+
+  context 'when the book is issued' do
+    let(:book1) { books(:unreturned_issued_book) }
+    let(:book2) { books(:unreturned_issued_book_with_multiple_copies) }
+    it 'returns the number of times the book is issued' do
+      expect(book1.number_of_issued_copies).to eq 1
+      expect(book2.number_of_issued_copies).to eq 3
+    end
+  end
 end
