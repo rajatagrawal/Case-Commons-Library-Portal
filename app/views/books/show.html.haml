@@ -9,7 +9,11 @@
 %p Price
 = @book.price
 %p Issued by
-= @book.user ? (@book.user.first_name + ' ' + @book.user.last_name) : 'None'
+- if @book.current_users != []
+  - @book.current_users.each do |book_user|
+    = book_user.first_name + ' ' + book_user.last_name
+- else
+  = 'None'
 
 - if @book.checked_out?
   = button_to 'Check In', checkin_path(@book.id), confirm: 'Are you sure?'

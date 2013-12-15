@@ -5,7 +5,7 @@ describe 'books/show' do
   let(:page) { Capybara.string(render) }
 
   context 'when the book is checked out' do
-    let(:book) { books(:issued_book) }
+    let(:book) { books(:unreturned_issued_book) }
     before do
       allow(view).to receive(:current_user).and_return(users(:employee))
       assign(:book, book)
@@ -13,7 +13,9 @@ describe 'books/show' do
 
     it 'shows who the book is issued to ' do
       expect(page).to have_content('Issued by')
-      expect(page).to have_content(book.user.first_name + ' ' + book.user.last_name)
+      book.current_users.each do |book_user|
+        expect(page).to have_content(book_user.first_name + ' ' + book_user.last_name)
+      end
 
     end
 
