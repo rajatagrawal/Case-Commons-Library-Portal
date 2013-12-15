@@ -23,7 +23,14 @@ describe UsersController do
       expect(response).to redirect_to user_profile_path(users(:admin))
     end
 
+    context 'when the user has checked out books' do
+      let(:user) { users(:employee_with_checked_out_books) }
+      it 'deletes the user book issue history' do
+        expect(UserBook.find_by_user_id(user.id)).to eq nil
+      end
+    end
   end
+
   describe 'PUT #update' do
 
     admin_first_name = ''
