@@ -9,9 +9,11 @@
 </head>
 
 %body
-
 - flash.each do |key,message|
   = content_tag :div, message, id: key
 = yield
+- if user_signed_in?
+  = link_to 'Go to profile page', user_profile_path(current_user)
+  = link_to 'Sign Out', destroy_user_session_path, method: :delete
 
 </html>
