@@ -7,24 +7,24 @@ feature 'book', js:true do
     login_in_as users(:employee)
     click_link 'Check out a book'
     expect(current_path).to eq books_path
-    book = Book.first
+    book = books(:unissued_book)
     within page.first('tr',text: book.title) do
       page.find_button('Checkout').click
     end
-    expect(current_path).to eq book_path(book)
-    page.find_button('Check Out').click
+    page.driver.browser.switch_to.alert.accept
+    expect(page).to have_content('Successfully checked out the book')
     expect(current_path).to eq user_profile_path(users(:employee))
     expect(page).to have_content(book.title)
   end
 
   scenario 'check in a book' do
-    login_in_as users(:employee_with_checked_out_books)
+    login_in_as users(:employee2_with_checked_out_books)
     expect(page.find_button('Check In')).to be
     click_button 'Check In'
-    expect(current_path).to eq book_path(books(:issued_book))
+    expect(current_path).to eq book_path(books(:unreturned_issued_book_with_multiple_copies))
     click_button 'Check In'
     page.driver.browser.switch_to.alert.accept
-    expect(current_path).to eq user_profile_path(users(:employee_with_checked_out_books))
+    expect(current_path).to eq user_profile_path(users(:employee2_with_checked_out_books))
     expect(page).to_not have_button('Check In')
   end
 
