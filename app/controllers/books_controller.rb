@@ -31,13 +31,12 @@ class BooksController< ApplicationController
   end
 
   def checkin
-    if @book.user == current_user
-      @book.user = nil
-      @book.save!
-      redirect_to user_profile_path(current_user)
-    else
-      render text: 'You cannot check in this book'
-    end
+    user_books = @book.user_books
+    issued_user_book = user_books.select { | user_book| user_book.user_id == current_user.id }.first
+    issued_user_book.returned_on = Time.now
+    issued_user_book.save
+    flash[:success] = 'Successfully checked in the book'
+    redirect_to user_profile_path(current_user)
   end
 
   def error

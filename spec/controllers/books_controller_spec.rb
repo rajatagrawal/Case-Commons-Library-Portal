@@ -107,9 +107,27 @@ describe BooksController do
       end
   end
 
-      it 'redirects to an error page' do
-        expect(response.body).to eq "You can not check out this book because this book has already been issued by '#{book_to_checkout.user.first_name + ' ' + book_to_checkout.user.last_name}."
-      end
+  describe 'POST #checkin' do
+    let(:book_to_checkin) { books(:book1)}
+    let(:user) { users(:employee) }
+
+    before do
+      sign_in(user)
+      UserBook.create(book_id: book_to_checkin.id, user_id: user.id, issued_on: Time.now)
+      post :checkin, id: book_to_checkin.id
+    end
+
+    it 'checks in the book' do
+      expect(user.current_issued_books).to_not include book_to_checkin
+      expect(user.all_issued_books).to include book_to_checkin
+    end
+
+    it 'redirects the user profile page' do
+      expect(response).to redirect_to user_profile_path(users(:employee))
+    end
+
+    it 'shows a successful checkin flash message' do
+      expect(flash[:success]).to eq 'Successfully checked in the book'
     end
   end
 end
