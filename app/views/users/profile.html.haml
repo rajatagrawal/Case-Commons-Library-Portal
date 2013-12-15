@@ -15,7 +15,7 @@
     Issued on
   %th
     Check in
-  - @user.books.each_with_index do |book,index|
+  - @user.current_issued_books.each_with_index do |book,index|
     %tr
       %td
         = index+1
