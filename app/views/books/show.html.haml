@@ -1,16 +1,21 @@
-%h1= @book.title
-%p The books is
-%p Title
-= @book.title
-%p Author
-= @book.author
-%p Publisher
-= @book.publisher
-%p Price
-= @book.price
-%p Issued by
-- if @book.current_users != []
-  - @book.current_users.each do |book_user|
-    = book_user.first_name + ' ' + book_user.last_name
-- else
-  = 'None'
+%h1
+  = @book.title
+%p
+  Author
+  = ': ' + @book.author
+%p
+  Publisher
+  = ': ' + @book.publisher
+%p
+  Price
+  = ': ' + @book.price.to_s
+%p
+  = 'Issued by : '
+  - if @book.current_users != []
+    - @book.current_users.each do |book_user|
+      %li
+        = book_user.first_name + ' ' + book_user.last_name
+  - else
+    = 'None'
+%p
+  = link_to 'See all books', books_path
