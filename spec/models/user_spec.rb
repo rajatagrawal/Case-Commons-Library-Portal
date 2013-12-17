@@ -103,3 +103,40 @@ describe '#full_name' do
     expect(full_name_user.full_name).to eq 'First Name Last Name'
   end
 end
+
+describe 'user_book_records' do
+  let(:book) do
+    book = Book.new
+    book.id = 1
+    book
+  end
+
+  let(:user) do
+    user = User.new
+    user.id = 1
+    user
+  end
+
+  let(:user_book1) do
+    user_book = UserBook.new
+    user_book.book_id = book.id
+    user_book.user_id = user.id
+    user_book
+  end
+
+  let(:user_book2) do
+    user_book = UserBook.new
+    user_book.book_id = book.id
+    user_book.user_id = user.id
+    user_book.returned_on = 1.day.ago
+    user_book
+  end
+
+  before do
+    allow(user).to receive(:user_books).and_return([user_book1,user_book2])
+  end
+  it 'returns the user book record for issued book passed in' do
+    expect(user.user_book_records(book)).to include user_book1
+    expect(user.user_book_records(book)).to_not include user_book2
+  end
+end

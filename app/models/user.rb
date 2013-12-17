@@ -31,6 +31,16 @@ class User < ActiveRecord::Base
     end
   end
 
+  def user_book_records(book)
+    current_issued_records = user_books.select do |user_book|
+      user_book.returned_on.blank?
+    end
+
+    current_issued_records.select do|user_book|
+      user_book.book_id == book.id
+    end
+  end
+
   def full_name
     first_name + ' ' + last_name
   end
