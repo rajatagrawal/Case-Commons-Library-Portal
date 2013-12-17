@@ -19,7 +19,7 @@
   - @books.each do |book|
     %tr
       %td
-        = book.title
+        = link_to book.title, book_path(book)
       %td
         = book.author
       %td

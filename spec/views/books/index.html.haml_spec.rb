@@ -59,8 +59,8 @@ describe 'books/index' do
       assign(:books, [book1,book2])
     end
     it 'shows the titles of the books' do
-      expect(page).to have_css('td', text: 'Book1 Title')
-      expect(page).to have_css('td', text: 'Book2 Title')
+      expect(page).to have_css('a', text: 'Book1 Title')
+      expect(page).to have_css('a', text: 'Book2 Title')
     end
 
     it 'shows the authors of the books' do
