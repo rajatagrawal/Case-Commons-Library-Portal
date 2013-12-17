@@ -5,7 +5,7 @@ feature 'book', js:true do
 
   scenario 'issue a book' do
     login_in_as users(:employee)
-    click_link 'Check out a book'
+    click_link 'check out'
     expect(current_path).to eq books_path
     book = books(:unissued_book)
     within page.first('tr',text: book.title) do

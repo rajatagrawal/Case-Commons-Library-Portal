@@ -5,28 +5,34 @@
   Your email address :
   = @user.email
 
-%p Books issued :
-%table
-  %th
-    Serial No
-  %th
-    Name
-  %th
-    Issued on
-  %th
-    Check in
-  - @user.current_issued_books.each_with_index do |book,index|
-    %tr
-      %td
-        = index+1
-      %td
-        = book.title
-      %td
-        = Time.now.strftime('%m/%d/%Y')
-      %td
-        = button_to "Check In", book_path(book), method: :get
-%p
-  = link_to 'Check out a book', books_path
+- if @user.current_issued_books.empty?
+  You have not issued any books yet. Want to
+  = link_to 'check out', books_path
+  a book?
+- else
+  You have issued the following books
+  %table
+    %th
+      Serial No
+    %th
+      Book
+    %th
+      Issued On
+    %th
+      Check In?
+    - @user.current_issued_books.each_with_index do |book,index|
+      %tr
+        %td
+          = index+1
+        %td
+          = link_to book.title, book_path(book)
+        %td
+          = @user.user_book_records(book).first.issued_on.strftime('%e %b %Y %H:%m:%S%p')
+        %td
+          = button_to "Check In", book_path(book), method: :get
+- if !@user.current_issued_books.empty?
+  %p
+    = link_to 'Check out a book', books_path
 %p
   - if @user.admin?
     = button_to 'Add a book', new_book_path, method: :get
