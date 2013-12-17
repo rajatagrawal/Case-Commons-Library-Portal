@@ -16,11 +16,6 @@ describe 'books/show' do
       book.current_users.each do |book_user|
         expect(page).to have_content(book_user.first_name + ' ' + book_user.last_name)
       end
-
-    end
-
-    it 'shows a check in button' do
-      expect(page).to have_button('Check In')
     end
 
   end
@@ -37,8 +32,5 @@ describe 'books/show' do
       expect(page).to have_content('None')
     end
 
-    it 'shows a check in button' do
-      expect(page).to have_button('Check Out')
-    end
   end
 end

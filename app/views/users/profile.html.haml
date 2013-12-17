@@ -29,7 +29,7 @@
         %td
           = @user.user_book_records(book).first.issued_on.strftime('%e %b %Y %H:%m:%S%p')
         %td
-          = button_to "Check In", book_path(book), method: :get
+          = button_to "Check In", checkin_path(book.id), method: :post, confirm: 'Are you sure?'
 - if !@user.current_issued_books.empty?
   %p
     = link_to 'Check out a book', books_path

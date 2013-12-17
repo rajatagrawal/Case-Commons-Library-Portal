@@ -21,8 +21,6 @@ feature 'book', js:true do
     login_in_as users(:employee2_with_checked_out_books)
     expect(page.find_button('Check In')).to be
     click_button 'Check In'
-    expect(current_path).to eq book_path(books(:unreturned_issued_book_with_multiple_copies))
-    click_button 'Check In'
     page.driver.browser.switch_to.alert.accept
     expect(current_path).to eq user_profile_path(users(:employee2_with_checked_out_books))
     expect(page).to_not have_button('Check In')

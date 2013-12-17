@@ -14,10 +14,3 @@
     = book_user.first_name + ' ' + book_user.last_name
 - else
   = 'None'
-
-- if @book.checked_out?
-  = button_to 'Check In', checkin_path(@book.id), confirm: 'Are you sure?'
-- else
-  = button_to 'Check Out', checkout_path(@book.id)
-
-= button_to "Back", books_path, method: :get
