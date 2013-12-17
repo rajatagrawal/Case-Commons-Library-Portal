@@ -132,3 +132,40 @@ describe '#number_of_issued_copies' do
     end
   end
 end
+
+describe 'user_book_records' do
+  let(:book) do
+    book = Book.new
+    book.id = 1
+    book
+  end
+
+  let(:user) do
+    user = User.new
+    user.id = 1
+    user
+  end
+
+  let(:user_book1) do
+    user_book = UserBook.new
+    user_book.book_id = book.id
+    user_book.user_id = user.id
+    user_book
+  end
+
+  let(:user_book2) do
+    user_book = UserBook.new
+    user_book.book_id = book.id
+    user_book.user_id = user.id
+    user_book.returned_on = 1.day.ago
+    user_book
+  end
+
+  before do
+    allow(book).to receive(:user_books).and_return([user_book1,user_book2])
+  end
+  it 'returns the user book record for issued book passed in' do
+    expect(book.user_book_records(user)).to include user_book1
+    expect(book.user_book_records(user)).to_not include user_book2
+  end
+end

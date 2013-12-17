@@ -42,4 +42,14 @@ class Book < ActiveRecord::Base
   def number_of_issued_copies
     current_users.size
   end
+
+  def user_book_records(user)
+    current_issued_records = user_books.select do |user_book|
+      user_book.returned_on.blank?
+    end
+
+    current_issued_records.select do|user_book|
+      user_book.book_id == user.id
+    end
+  end
 end
