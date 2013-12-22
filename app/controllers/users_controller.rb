@@ -21,7 +21,7 @@ class UsersController< ApplicationController
       flash[:success] = 'Added a new user successfully.'
       redirect_to user_profile_path(current_user)
     else
-      redirect_to error_path
+      render 'new'
     end
   end
 end

@@ -14,4 +14,14 @@ feature 'invalid parameters', js: true do
     expect(page).to have_content "Publisher can't be blank"
     expect(page).to have_content "Price can't be blank"
   end
+
+  scenario 'invalid user add' do
+    login_in_as users(:admin)
+    visit new_user_path
+    click_button 'Add User'
+    page.driver.browser.switch_to.alert.accept
+    expect(page).to have_content 'Please review the errors below'
+    expect(page).to have_content "First name can't be blank"
+    expect(page).to have_content "Last name can't be blank"
+  end
 end

@@ -1,3 +1,9 @@
+- if @user.errors.any?
+  %h3
+    Please review the errors below
+  - @user.errors.full_messages.each do |error_message|
+    %li
+      = error_message
 %h2
   Create a new user
 = simple_form_for @user, url: users_path do |f|

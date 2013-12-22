@@ -177,7 +177,7 @@ describe UsersController do
       end
 
       it 'redirects to the application error page' do
-        expect(response).to redirect_to error_path
+        expect(response).to render_template('new')
       end
     end
   end
