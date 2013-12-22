@@ -7,4 +7,5 @@ class UserBook < ActiveRecord::Base
   validates :user, presence: true
   validates :book, presence: true
   validates :issued_on, presence: true
+  validates_associated :book, on: :create
 end

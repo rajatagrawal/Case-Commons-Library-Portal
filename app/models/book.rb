@@ -7,6 +7,7 @@ class Book < ActiveRecord::Base
   validates :author, presence: true
   validates :publisher, presence: true
   validates :price, presence: true
+  validate :cannot_checkout_more_than_quantity
 
   def current_users
     current_user_books = user_books.select do |user_book|
@@ -50,6 +51,12 @@ class Book < ActiveRecord::Base
 
     current_issued_records.select do|user_book|
       user_book.book_id == user.id
+    end
+  end
+
+  def cannot_checkout_more_than_quantity
+    if number_of_issued_copies == quantity
+      errors[:base] << 'can not issue any more books.'
     end
   end
 end

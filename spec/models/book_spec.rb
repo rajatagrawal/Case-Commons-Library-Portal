@@ -169,3 +169,35 @@ describe 'user_book_records' do
     expect(book.user_book_records(user)).to_not include user_book2
   end
 end
+
+describe '#cannot_checkout_more_than_quantity' do
+  let(:book) do
+    book = Book.new
+    book
+  end
+
+  context 'when the number of issued books is less than the quantity' do
+    before do
+      allow(book).to receive(:number_of_issued_copies).and_return(3)
+      allow(book).to receive(:quantity).and_return(4)
+    end
+
+    it 'does not add error message' do
+      book.valid?
+      expect(book.errors[:base]).to_not include 'can not issue any more books.'
+    end
+  end
+
+  context 'when the number of issued books is same as the quantity' do
+
+    before do
+      allow(book).to receive(:number_of_issued_copies).and_return(3)
+      allow(book).to receive(:quantity).and_return(3)
+    end
+
+    it 'adds an error message' do
+      book.valid?
+      expect(book.errors[:base]).to include 'can not issue any more books.'
+    end
+  end
+end
