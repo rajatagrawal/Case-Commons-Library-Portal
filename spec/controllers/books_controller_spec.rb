@@ -14,21 +14,35 @@ describe BooksController do
       book
     end
 
-    before do
-      sign_in(users(:admin))
-      post :create, book: book.attributes.except('user_id','updated_at','created_at')
+    context 'when the book parameters are valid' do
+      before do
+        sign_in(users(:admin))
+        post :create, book: book.attributes.except('user_id','updated_at','created_at')
+      end
+
+      it 'creates a new book' do
+        expect(Book.find_by_title('BookTitle').id).to_not be_nil
+      end
+
+      it 'redirects to the user profile page' do
+        expect(response).to redirect_to user_profile_path(users(:admin))
+      end
+
+      it 'shows a flash message of successful creation of the book' do
+        expect(flash[:success]).to eq 'Added a new book successfully'
+      end
     end
 
-    it 'creates a new book' do
-      expect(Book.find_by_title('BookTitle').id).to_not be_nil
-    end
+    context 'when the book parameters are invalid' do
+      before do
+        book.publisher = ''
+        sign_in(users(:admin))
+        post :create, book: book.attributes.except('user_id','updated_at','created_at')
+      end
 
-    it 'redirects to the user profile page' do
-      expect(response).to redirect_to user_profile_path(users(:admin))
-    end
-
-    it 'shows a flash message of successful creation of the book' do
-      expect(flash[:success]).to eq 'Added a new book successfully'
+      it 'redirects to the same page' do
+        expect(response).to render_template 'new'
+      end
     end
   end
 

@@ -37,6 +37,7 @@ feature 'book', js:true do
     fill_in 'Enter the Price of the book', with: 123
     fill_in 'Enter the quantity of the book', with: 3
     click_button 'Add the book'
+    page.driver.browser.switch_to.alert.accept
     expect(current_path).to eq user_profile_path(users(:admin))
     expect(page).to have_content('Added a new book successfully')
     visit books_path

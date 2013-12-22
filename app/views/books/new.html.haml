@@ -1,3 +1,10 @@
+- if @book.errors.any?
+  %h3
+    Please review the errors below
+  - @book.errors.full_messages.each do |error_message|
+    %li
+      = error_message
+
 %h2
   Add a Book
 
@@ -7,4 +14,4 @@
   = f.input :publisher, label: 'Enter the Publisher of the book'
   = f.input :price, label: 'Enter the Price of the book'
   = f.input :quantity, label: 'Enter the quantity of the book'
-  = f.button :submit, "Add the book"
+  = f.button :submit, "Add the book", confirm: 'Are you sure?'
