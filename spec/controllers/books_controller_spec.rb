@@ -57,26 +57,41 @@ describe BooksController do
     end
     let(:book_id) { book.id }
 
-    before do
-      sign_in(users(:admin))
-      put :update, book: book.attributes.except('user_id','updated_at','created_at'), id: book_id
+
+    context 'when the book paramters are valid' do
+      before do
+        sign_in(users(:admin))
+        put :update, book: book.attributes.except('user_id','updated_at','created_at'), id: book_id
+      end
+
+      it 'updates the book details' do
+        expect(Book.find(book_id).title).to eq 'UpdateBookTitle'
+        expect(Book.find(book_id).author).to eq 'UpdateBookAuthor'
+        expect(Book.find(book_id).publisher).to eq 'UpdateBookPublisher'
+        expect(Book.find(book_id).price).to eq 123
+      end
+
+      it 'redirects to the user profile page' do
+        expect(response).to redirect_to user_profile_path(users(:admin))
+      end
+
+      it 'shows a flash message of successful creation of the book' do
+        expect(flash[:success]).to eq 'Successfully updated the book'
+      end
+
     end
 
-    it 'updates the book details' do
-      expect(Book.find(book_id).title).to eq 'UpdateBookTitle'
-      expect(Book.find(book_id).author).to eq 'UpdateBookAuthor'
-      expect(Book.find(book_id).publisher).to eq 'UpdateBookPublisher'
-      expect(Book.find(book_id).price).to eq 123
-    end
+    context 'when the book parameters are invalid' do
+      before do
+        book.title = ''
+        sign_in(users(:admin))
+        put :update, book: book.attributes.except('user_id','updated_at','created_at'), id: book_id
 
-    it 'redirects to the user profile page' do
-      expect(response).to redirect_to user_profile_path(users(:admin))
+      end
+      it 'renders the edit book template' do
+        expect(response).to render_template 'edit'
+      end
     end
-
-    it 'shows a flash message of successful creation of the book' do
-      expect(flash[:success]).to eq 'Successfully updated the book'
-    end
-
   end
 
   describe 'DELETE #destroy' do

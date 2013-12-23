@@ -15,6 +15,16 @@ feature 'invalid parameters', js: true do
     expect(page).to have_content "Price can't be blank"
   end
 
+  scenario 'invalid book edit' do
+    login_in_as users(:admin)
+    visit edit_book_path(books(:book1))
+    fill_in 'Enter the title for the book', with: ''
+    click_button 'Save'
+    page.driver.browser.switch_to.alert.accept
+    expect(page).to have_content 'Please review the errors below'
+    expect(page).to have_content "Title can't be blank"
+  end
+
   scenario 'invalid user add' do
     login_in_as users(:admin)
     visit new_user_path

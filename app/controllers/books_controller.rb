@@ -2,9 +2,12 @@ class BooksController< ApplicationController
   load_and_authorize_resource
 
   def update
-    @book.update_attributes params[:book]
-    flash[:success] = "Successfully updated the book"
-    redirect_to user_profile_path(current_user)
+    if @book.update_attributes params[:book]
+      flash[:success] = "Successfully updated the book"
+      redirect_to user_profile_path(current_user)
+    else
+      render 'edit'
+    end
   end
 
   def create
