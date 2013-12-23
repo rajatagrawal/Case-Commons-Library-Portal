@@ -12,7 +12,7 @@ class UsersController< ApplicationController
       flash[:success] = 'Successfully updated the user.'
       redirect_to user_profile_path(current_user)
     else
-      redirect_to error_path
+      render 'edit'
     end
   end
 

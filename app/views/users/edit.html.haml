@@ -1,3 +1,10 @@
+- if @user.errors.any?
+  %h3
+    Please review the errors below
+  - @user.errors.full_messages.each do |error_message|
+    %li
+      = error_message
+
 %h2
   Edit User
 = simple_form_for @user do |f|

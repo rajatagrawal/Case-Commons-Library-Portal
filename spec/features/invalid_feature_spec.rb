@@ -34,4 +34,14 @@ feature 'invalid parameters', js: true do
     expect(page).to have_content "First name can't be blank"
     expect(page).to have_content "Last name can't be blank"
   end
+
+  scenario 'invalid user edit' do
+    login_in_as users(:admin)
+    visit edit_user_path(users(:employee2))
+    fill_in 'Enter First Name', with: ''
+    click_button 'Update user'
+    page.driver.browser.switch_to.alert.accept
+    expect(page).to have_content 'Please review the errors below'
+    expect(page).to have_content "First name can't be blank"
+  end
 end

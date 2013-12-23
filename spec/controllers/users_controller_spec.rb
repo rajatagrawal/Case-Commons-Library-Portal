@@ -79,8 +79,8 @@ describe UsersController do
 
       end
 
-      it 'redirects to the application error page' do
-        expect(response).to redirect_to error_path
+      it 'renders the edit user page' do
+        expect(response).to render_template 'edit'
       end
 
     end
