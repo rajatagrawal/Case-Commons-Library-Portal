@@ -9,6 +9,8 @@ gem 'cancan'
 gem 'pg'
 gem 'devise'
 gem 'simple_form'
+gem 'faker'
+gem 'ffaker'
 
 
 # Gems used only for assets and not required
@@ -33,8 +35,6 @@ end
 group :development, :test do
   gem 'rspec-rails'
   gem 'haml-rails'
-  gem 'faker'
-  gem 'ffaker'
   gem 'pry-debugger'
   gem 'awesome_print'
   gem 'capybara'
