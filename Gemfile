@@ -5,9 +5,10 @@ gem 'rails'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
 gem 'cancan'
 gem 'pg'
+gem 'devise'
+gem 'simple_form'
 
 
 # Gems used only for assets and not required
@@ -34,10 +35,8 @@ group :development, :test do
   gem 'haml-rails'
   gem 'faker'
   gem 'ffaker'
-  gem 'simple_form'
   gem 'pry-debugger'
   gem 'awesome_print'
-  gem 'devise'
   gem 'capybara'
   gem 'selenium-webdriver'
   gem 'factory_girl'
