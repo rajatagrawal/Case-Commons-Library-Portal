@@ -1,0 +1,55 @@
+body{
+  background-color: gray;
+}
+
+.dashboard-admin-button{
+  width: 100px;
+  background-color: transparent;
+  color: white;
+  border: none;
+  display: block;
+}
+
+.dashboard-left-panel{
+  float: left;
+  margin-right: 10px;
+  background-color: brown;
+  position: absolute;
+  height: 100%;
+  width: 10%;
+}
+
+.dashboard-right-panel{
+  float: left;
+  position: absolute;
+  left:11%;
+}
+.navigation-bar-user-name
+{
+  display: inline;
+  text-transform: uppercase;
+  color: white;
+  vertical-align: center;
+}
+.dashboard-profile-button
+{
+  position: absolute;
+  left: 85%;
+}
+
+.dashboard-sign-out-button
+{
+  position: absolute;
+  left: 95%;
+}
+.dashboard-navigation-bar
+{
+  background-color: dodgerblue;
+  height: 1.5em;
+  width: 100%;
+}
+
+.dashboard-navigation-bar a
+{
+    color: white;
+}

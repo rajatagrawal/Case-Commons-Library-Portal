@@ -15,9 +15,6 @@ describe 'users/profile' do
     before do
       assign(:user, user1)
     end
-    it "shows a greeting message with the user's name" do
-      expect(page).to have_content("Hi #{user1.full_name} !")
-    end
 
     context 'if the user does not have issued books' do
       it 'shows no books issued message' do
@@ -95,7 +92,7 @@ describe 'users/profile' do
     end
 
     it 'shows the add a new book button' do
-      expect(page).to have_button('Add a book')
+      expect(page).to have_css('a',text: 'Add a book')
     end
 
     it 'shows the delete a book button' do

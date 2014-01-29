@@ -11,6 +11,11 @@ describe 'layouts/application' do
     before do
       allow(view).to receive(:user_signed_in?).and_return(true)
     end
+
+    it "shows a greeting message with the user's name in a link" do
+      expect(page).to have_css('a',text: "#{users(:employee).full_name}")
+    end
+
     it 'has a sign out link' do
       expect(page).to have_css('a',text: 'Sign Out')
     end

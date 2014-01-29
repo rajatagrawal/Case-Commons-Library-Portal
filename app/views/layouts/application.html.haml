@@ -9,11 +9,14 @@
 </head>
 
 %body
+  - if user_signed_in?
+    .dashboard-navigation-bar
+      %p.navigation-bar-user-name
+        = link_to current_user.full_name, user_profile_path(current_user)
+      = link_to 'Go to profile page', user_profile_path(current_user), class: 'dashboard-profile-button'
+      = link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'dashboard-sign-out-button'
 - flash.each do |key,message|
   = content_tag :div, message, id: key
 = yield
-- if user_signed_in?
-  = link_to 'Go to profile page', user_profile_path(current_user)
-  = link_to 'Sign Out', destroy_user_session_path, method: :delete
 
 </html>
