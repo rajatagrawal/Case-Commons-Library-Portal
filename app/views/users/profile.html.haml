@@ -37,6 +37,6 @@
           %td
             = link_to book.title, book_path(book)
           %td
-            = @user.user_book_records(book).first.issued_on.strftime('%e %b %Y %H:%m:%S%p')
+            = @user.user_book_records(book).first.issued_on.in_time_zone("Eastern Time (US & Canada)").to_formatted_s(:long_ordinal)
           %td
             = button_to "Check In", checkin_path(book.id), method: :post, confirm: 'Are you sure?'
