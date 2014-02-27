@@ -5,8 +5,8 @@ feature 'users',js:true do
   fixtures :all
   scenario 'Admin adds a user' do
     login_in_as users(:admin)
-    expect(page).to have_button('Add a user')
-    click_button 'Add a user'
+    expect(page).to have_css('a','Add a user')
+    click_link 'Add a user'
     expect(current_path).to eq new_user_path
     fill_in 'Enter First Name', with: 'NewUserFirstName'
     fill_in 'Enter Last Name', with: 'NewUserLastName'
@@ -24,8 +24,8 @@ feature 'users',js:true do
 
   scenario 'Admin edits a user' do
     login_in_as users(:admin)
-    expect(page).to have_button('Edit a user')
-    click_button 'Edit a user'
+    expect(page).to have_css('a','Edit a user')
+    click_link 'Edit a user'
     expect(current_path).to eq users_path
     user = User.first
     row = page.find('tr', text: user.first_name)
@@ -44,8 +44,8 @@ feature 'users',js:true do
 
   scenario 'Admin deletes a user' do
     login_in_as users(:admin)
-    expect(page).to have_button('Delete a user')
-    click_button 'Delete a user'
+    expect(page).to have_css('a','Delete a user')
+    click_link 'Delete a user'
     expect(current_path).to eq users_path
     user = User.first
     row = page.find('tr', text: user.first_name)

@@ -19,8 +19,8 @@ feature 'book', js:true do
 
   scenario 'check in a book' do
     login_in_as users(:employee2_with_checked_out_books)
-    expect(page.find_button('Check In')).to be
-    click_button 'Check In'
+    expect(page).to have_css('a','Check In')
+    click_link 'Check In'
     page.driver.browser.switch_to.alert.accept
     expect(current_path).to eq user_profile_path(users(:employee2_with_checked_out_books))
     expect(page).to_not have_button('Check In')
@@ -28,8 +28,8 @@ feature 'book', js:true do
 
   scenario 'Admin adds a book' do
     login_in_as users(:admin)
-    expect(page).to have_button('Add a book')
-    click_button 'Add a book'
+    expect(page).to have_css('a','Add a book')
+    click_link 'Add a book'
     expect(current_path).to eq new_book_path
     fill_in 'Enter the Title of the book', with: 'NewBookTitle'
     fill_in 'Enter the Author of the book', with: 'NewBookAuthor'
@@ -46,8 +46,8 @@ feature 'book', js:true do
 
   scenario 'Admin deletes a book' do
     login_in_as users(:admin)
-    expect(page).to have_button('Delete a book')
-    click_button 'Delete a book'
+    expect(page).to have_css('a','Delete a book')
+    click_link 'Delete a book'
     expect(current_path).to eq books_path
     book = Book.first
     row = page.find('tr',text: book.title)
@@ -63,8 +63,8 @@ feature 'book', js:true do
 
   scenario 'Admin edits a book' do
     login_in_as users(:admin)
-    expect(page).to have_button('Edit a book')
-    click_button 'Edit a book'
+    expect(page).to have_css('a','Edit a book')
+    click_link 'Edit a book'
     expect(current_path).to eq books_path
     book = Book.first
     row = page.find('tr',text: book.title)
