@@ -74,11 +74,11 @@ describe 'users/profile' do
       end
 
       it 'shows when the book was issued' do
-        expect(page).to have_content(3.days.ago.strftime('%e %b %Y %H:%m:%S%p'))
+        expect(page).to have_content(3.days.ago.in_time_zone("Eastern Time (US & Canada)").to_formatted_s(:long_ordinal))
       end
 
       it 'shows a button to check in the book' do
-        expect(page).to have_button('Check In')
+        expect(page).to have_css('a', 'Check In')
       end
     end
 
@@ -96,23 +96,23 @@ describe 'users/profile' do
     end
 
     it 'shows the delete a book button' do
-      expect(page).to have_button('Delete a book')
+      expect(page).to have_css('a','Delete a book')
     end
 
     it 'shows edit a book button' do
-      expect(page).to have_button('Edit a book')
+      expect(page).to have_css('a','Edit a book')
     end
 
     it 'shows add a user button' do
-      expect(page).to have_button('Add a user')
+      expect(page).to have_css('a','Add a user')
     end
 
     it 'shows edit a user button' do
-      expect(page).to have_button('Edit a user')
+      expect(page).to have_css('a','Edit a user')
     end
 
     it 'shows delete a user button' do
-      expect(page).to have_button('Delete a user')
+      expect(page).to have_css('a','Delete a user')
     end
   end
 end

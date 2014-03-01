@@ -33,11 +33,11 @@
             %li
               = book_user.first_name + ' ' + book_user.last_name
         - if book.can_be_checked_out?
-          = button_to 'Checkout', checkout_path(book.id), confirm: 'Are you sure?'
+          = link_to 'Checkout', checkout_path(book.id), method: :post, confirm: 'Are you sure?'
         - else
           No more copies left to checkout
       - if current_user.admin?
         %td
-          = button_to 'Edit Book', edit_book_path(book), method: :get
+          = link_to 'Edit Book', edit_book_path(book), method: :get
         %td
-          = button_to 'Delete Book', book_path(book), method: :delete, confirm: 'Are you sure?'
+          = link_to 'Delete Book', book_path(book), method: :delete, confirm: 'Are you sure?'
