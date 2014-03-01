@@ -131,7 +131,7 @@ describe 'books/index' do
     context 'when the book can be checked out' do
       it 'shows a button to checkout the book' do
         Book.any_instance.stub(:can_be_checked_out?).and_return(true)
-        expect(page).to have_button('Checkout')
+        expect(page).to have_css('a', text: 'Checkout')
       end
     end
 
@@ -163,12 +163,12 @@ describe 'books/index' do
     end
     context 'admin controls' do
       it 'shows a delete button' do
-        expect(page).to have_button('Delete Book')
+        expect(page).to have_css('a',text: 'Delete Book')
       end
 
 
       it 'shows an edit button' do
-        expect(page).to have_button('Edit Book')
+        expect(page).to have_css('a', text: 'Edit Book')
       end
     end
   end
