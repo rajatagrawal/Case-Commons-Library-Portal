@@ -14,4 +14,4 @@
   = f.input :quantity, label: 'Enter the quantity for the book'
   = f.input :price,label: 'Enter the price for the book'
   = f.button :submit, 'Save', confirm: 'Are you sure?'
-= button_to 'Back', book_path(@book.id), method: :get
+= button_to 'Cancel', user_profile_path(@book.id), method: :get, class: 'red-button'

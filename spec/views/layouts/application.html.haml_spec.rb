@@ -16,12 +16,16 @@ describe 'layouts/application' do
       expect(page).to have_css('a',text: "#{users(:employee).full_name}")
     end
 
+    it 'shows a link to checkout a book' do
+      expect(page).to have_css('a', text: 'Checkout a book')
+    end
+
     it 'has a sign out link' do
       expect(page).to have_css('a',text: 'Sign Out')
     end
 
     it 'has a link to the user profile page' do
-      expect(page).to have_css('a',text: 'Go to profile page')
+      expect(page).to have_css('a',text: 'My profile')
     end
   end
 
