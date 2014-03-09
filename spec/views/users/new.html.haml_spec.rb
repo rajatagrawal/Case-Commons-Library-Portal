@@ -1,11 +1,14 @@
 require 'spec_helper'
 
 describe 'users/new' do
+  fixtures :all
   let(:page) { Capybara.string(render) }
 
   context 'page layout' do
     before do
+      user = users(:admin)
       assign(:user, User.new)
+      allow(view).to receive(:current_user).and_return(user)
     end
 
     it 'shows the page heading' do
@@ -63,6 +66,7 @@ describe 'users/new' do
       error_message = 'this is an error'
       user.errors.add(:error_key,error_message)
       assign(:user,user)
+      allow(view).to receive(:current_user).and_return(users(:admin))
     end
 
     it 'shows the validation errors heading' do

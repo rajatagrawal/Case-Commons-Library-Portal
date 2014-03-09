@@ -13,10 +13,24 @@
     .dashboard-navigation-bar
       %p.navigation-bar-user-name
         = link_to current_user.full_name, user_profile_path(current_user)
-      = link_to 'Go to profile page', user_profile_path(current_user), class: 'dashboard-profile-button'
+      = link_to 'My profile', user_profile_path(current_user), class: 'dashboard-profile-button'
       = link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'dashboard-sign-out-button'
-- flash.each do |key,message|
-  = content_tag :div, message, id: key
-= yield
 
+    .dashboard-left-panel
+      = link_to 'Checkout a book', books_path, class: 'dashboard-admin-button'
+      - if current_user.admin?
+        = link_to 'Add a book', new_book_path, method: :get, class: 'dashboard-admin-button'
+        = link_to 'Delete a book', books_path, method: :get, class: 'dashboard-admin-button'
+        = link_to 'Edit a book', books_path, method: :get, class: 'dashboard-admin-button'
+        = link_to 'Add a user', new_user_path, method: :get, class: 'dashboard-admin-button'
+        = link_to 'Edit a user', users_path, method: :get, class: 'dashboard-admin-button'
+        = link_to 'Delete a user', users_path, method: :get, class: 'dashboard-admin-button'
+    .dashboard-right-panel
+      - flash.each do |key,message|
+        = content_tag :div, message, id: key
+      = yield
+  - else
+    - flash.each do |key,message|
+      = content_tag :div, message, id: key
+    = yield
 </html>

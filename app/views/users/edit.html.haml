@@ -13,5 +13,4 @@
   = f.input :email, label: 'Enter Email Address'
   = f.input :role, collection: ['employee','admin'], as: :radio_buttons
   = f.button :submit, 'Update user', confirm: 'Are you sure?'
-= button_to 'Go to home', user_profile_path(current_user), method: :get
-
+= button_to 'Cancel', user_profile_path(current_user), method: :get, class: 'red-button'

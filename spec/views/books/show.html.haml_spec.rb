@@ -46,8 +46,8 @@ describe 'books/show' do
     it 'shows the price of the book' do
       expect(page).to have_content ': 123'
     end
-    it 'shows a link to go the book index page' do
-      expect(page).to have_css('a','See all books')
+    it 'shows a link to go back to the profile page' do
+      expect(page).to have_button('Back')
     end
 
     context 'when the book is checked out' do

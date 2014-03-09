@@ -1,6 +1,6 @@
 %h2
   List of all the books
-%table{ border: '1'}
+%table
   %th
     Title
   %th
@@ -11,11 +11,6 @@
     Quantity
   %th
     Status
-  - if current_user.admin?
-    %th
-      Edit Book?
-    %th
-      Delete Book?
   - @books.each do |book|
     %tr
       %td
@@ -33,11 +28,11 @@
             %li
               = book_user.first_name + ' ' + book_user.last_name
         - if book.can_be_checked_out?
-          = link_to 'Checkout', checkout_path(book.id), method: :post, confirm: 'Are you sure?'
+          = button_to 'Checkout', checkout_path(book.id), confirm: 'Are you sure?'
         - else
           No more copies left to checkout
       - if current_user.admin?
         %td
-          = link_to 'Edit Book', edit_book_path(book), method: :get
+          = button_to 'Edit Book', edit_book_path(book), method: :get, class: 'blue-button'
         %td
-          = link_to 'Delete Book', book_path(book), method: :delete, confirm: 'Are you sure?'
+          = button_to 'Delete Book', book_path(book), method: :delete, confirm: 'Are you sure?', class: 'red-button'

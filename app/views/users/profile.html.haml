@@ -1,42 +1,29 @@
-.dashboard-left-panel
-  - if @user.admin?
-    = link_to 'Add a book', new_book_path, method: :get, class: 'dashboard-admin-button'
-    = link_to 'Delete a book', books_path, method: :get, class: 'dashboard-admin-button'
-    = link_to 'Edit a book', books_path, method: :get, class: 'dashboard-admin-button'
-    = link_to 'Add a user', new_user_path, method: :get, class: 'dashboard-admin-button'
-    = link_to 'Edit a user', users_path, method: :get, class: 'dashboard-admin-button'
-    = link_to 'Delete a user', users_path, method: :get, class: 'dashboard-admin-button'
-  - if !@user.current_issued_books.empty?
-    %p
-      = link_to 'Check out a book', books_path, class: 'dashboard-admin-button'
+%p
+  Your email address :
+  = @user.email
 
-.dashboard-right-panel
-  %p
-    Your email address :
-    = @user.email
-
-  - if @user.current_issued_books.empty?
-    You have not issued any books yet. Want to
-    = link_to 'check out', books_path
-    a book?
-  - else
-    You have issued the following books
-    %table
-      %th
-        Serial No
-      %th
-        Book
-      %th
-        Issued On
-      %th
-        Check In?
-      - @user.current_issued_books.each_with_index do |book,index|
-        %tr
-          %td
-            = index+1
-          %td
-            = link_to book.title, book_path(book)
-          %td
-            = @user.user_book_records(book).first.issued_on.in_time_zone("Eastern Time (US & Canada)").to_formatted_s(:long_ordinal)
-          %td
-            = link_to "Check In", checkin_path(book.id), method: :post, confirm: 'Are you sure?'
+- if @user.current_issued_books.empty?
+  You have not issued any books yet. Want to
+  = link_to 'check out', books_path
+  a book?
+- else
+  You have issued the following books
+  %table
+    %th
+      Serial No
+    %th
+      Book
+    %th
+      Issued On
+    %th
+      Check In?
+    - @user.current_issued_books.each_with_index do |book,index|
+      %tr
+        %td
+          = index+1
+        %td
+          = link_to book.title, book_path(book)
+        %td
+          = @user.user_book_records(book).first.issued_on.in_time_zone("Eastern Time (US & Canada)").to_formatted_s(:long_ordinal)
+        %td
+          = link_to "Check In", checkin_path(book.id), method: :post, confirm: 'Are you sure?'

@@ -15,3 +15,4 @@
   = f.input :price, label: 'Enter the Price of the book'
   = f.input :quantity, label: 'Enter the quantity of the book'
   = f.button :submit, "Add the book", confirm: 'Are you sure?'
+= button_to 'Cancel', user_profile_path(current_user), method: :get, class: 'red-button'

@@ -1,55 +1,141 @@
 body{
-  background-color: gray;
+  background-color: #E5EBEF;
+  font-family: "Trebuchet MS";
+  font-weight: lighter;
+  font-size: 0.8em;
+  color: #667383;
 }
 
 .dashboard-admin-button{
-  width: 100px;
   background-color: transparent;
-  color: white;
-  border: none;
+  color: #6D777B;
   display: block;
+  border-bottom: 2px solid #6D777B;
+  text-decoration: none;
+  padding-bottom: 0.5em;
+  padding-top: 0.5em;
+  text-align: center;
+}
+
+.dashboard-admin-button:first-child
+{
+  margin-top: 3em;
+  border-top :2px solid #6D777B;
+}
+
+.dashboard-admin-button:hover
+{
+  color: red;
 }
 
 .dashboard-left-panel{
-  float: left;
-  margin-right: 10px;
-  background-color: brown;
-  position: absolute;
-  height: 100%;
-  width: 10%;
+  background-color: #283439;
+  position:absolute;
+  top:0em;
+  left:0em;
+  z-index: -1;
+  height:100%;
+  width: 10em;
 }
 
 .dashboard-right-panel{
-  float: left;
   position: absolute;
-  left:11%;
+  top: 3em;
+  left: 10em;
+  margin-left: 2em;
+  margin-top: 1em;
+}
+
+.dashboard-right-panel a {
+  color: #667383;
+  text-decoration: none;
+  color: #566071;
+}
+
+.dashboard-right-panel a:hover {
+  color: red;
 }
 .navigation-bar-user-name
 {
-  display: inline;
   text-transform: uppercase;
   color: white;
-  vertical-align: center;
+  float: left;
+  margin-left: 6.4em;
+  font-size: x-large;
+}
+
+.navigation-bar-user-name a {
+  position: absolute;
+  top:0.2em;
 }
 .dashboard-profile-button
 {
   position: absolute;
-  left: 85%;
+  top: 1em;
+  font-size: 1em;
+  left: 92%;
+}
+.dashboard-sign-out-button{
+  position: absolute;
+  top: 1em;
+  left: 97%;
 }
 
-.dashboard-sign-out-button
-{
-  position: absolute;
-  left: 95%;
-}
 .dashboard-navigation-bar
 {
-  background-color: dodgerblue;
-  height: 1.5em;
+  background-color: #457097;
+  height: 3em;
+  display: block;
+  opacity: 0.7;
+  position: absolute;
+  top: 0px;
+  left: 0px;
   width: 100%;
 }
 
 .dashboard-navigation-bar a
 {
     color: white;
+    text-decoration: none;
+}
+input[type='submit'].blue-button {
+  background-color: #5CB2DB;
+  border: none;
+  color: white;
+  height: 2.5em;
+  width: 8em;
+  font-size: 14px;
+  border-radius: 0.4em;
+}
+
+input[type='submit'].blue-button:hover {
+  background-color: #0088FF;
+
+}
+
+input[type='submit'].red-button {
+  background-color: #E7756B;
+  border: none;
+  color: white;
+  height: 2.5em;
+  width: 8em;
+  font-size: 14px;
+  border-radius: 0.4em;
+}
+input[type='submit'].red-button:hover {
+  background-color: #AA0000;
+}
+
+input[type='submit']{
+  border: none;
+  color: white;
+  height: 2.5em;
+  width: 8em;
+  font-size: 14px;
+  border-radius: 0.4em;
+  background-color: #44D378;
+  cursor: pointer;
+}
+input[type='submit']:hover{
+  background-color: #00AA00;
 }
