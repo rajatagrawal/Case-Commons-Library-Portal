@@ -28,6 +28,7 @@ gem 'jquery-rails'
 
 group :test do
   gem 'shoulda-matchers'
+  gem 'database_cleaner', git: 'https://github.com/bmabey/database_cleaner.git'
   # gem 'fixture-builder'
 end
 

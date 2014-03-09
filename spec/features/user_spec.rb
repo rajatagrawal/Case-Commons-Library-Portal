@@ -44,7 +44,7 @@ feature 'users',js:true do
 
   scenario 'Admin deletes a user' do
     login_in_as users(:admin)
-    expect(page).to have_css('a','Delete a user')
+    expect(page).to have_css('a', text: 'Delete a user')
     click_link 'Delete a user'
     expect(current_path).to eq users_path
     user = User.first
