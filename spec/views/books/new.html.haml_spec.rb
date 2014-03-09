@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe 'books/new' do
+  fixtures :all
   let(:page) { Capybara.string(render) }
 
   let(:book) { Book.new }
@@ -8,6 +9,7 @@ describe 'books/new' do
 
   context 'page layout' do
     before do
+      allow(view).to receive(:current_user).and_return(users(:admin))
       assign(:book, book)
     end
     it 'shows the labels for the fields' do
@@ -29,6 +31,7 @@ describe 'books/new' do
 
   context 'when there are validation errors on the object' do
     before do
+      allow(view).to receive(:current_user).and_return(users(:admin))
       error_message = 'this is an error'
       book.errors.add(:error_key,error_message)
       assign(:book,book)

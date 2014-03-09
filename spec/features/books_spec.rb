@@ -9,7 +9,7 @@ feature 'book', js:true do
     expect(current_path).to eq books_path
     book = books(:unissued_book)
     within page.first('tr',text: book.title) do
-      page.find('a',text: 'Checkout').click
+      page.find_button('Checkout').click
     end
     page.driver.browser.switch_to.alert.accept
     expect(page).to have_content('Successfully checked out the book')
@@ -52,7 +52,7 @@ feature 'book', js:true do
     book = Book.first
     row = page.find('tr',text: book.title)
     within row do
-      click_link 'Delete Book'
+      click_button 'Delete Book'
     end
     page.driver.browser.switch_to.alert.accept
     expect(current_path).to eq user_profile_path(users(:admin))
@@ -69,7 +69,7 @@ feature 'book', js:true do
     book = Book.first
     row = page.find('tr',text: book.title)
     within row do
-      click_link 'Edit Book'
+      click_button 'Edit Book'
     end
     expect(current_path).to eq edit_book_path(book)
     fill_in 'Enter the title for the book', with: 'Updated Title'

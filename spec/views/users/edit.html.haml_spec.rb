@@ -40,7 +40,7 @@ describe 'users/edit' do
     end
 
     it 'shows a button to go back to the profile page' do
-      expect(page).to have_button('Go to home')
+      expect(page).to have_button('Cancel')
     end
 
   end

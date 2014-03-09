@@ -13,4 +13,6 @@
   = f.input :password, required: true
   = f.input :password_confirmation, label: 'Password Confirmation', required: true
   = f.input :role, label: 'Role', collection: ['employee','admin'], as: :radio_buttons
-  = f.button :submit, 'Add User', confirm: 'Are you sure?'
+  .navigation-buttons
+    = f.button :submit, 'Add User', confirm: 'Are you sure?'
+    = button_to 'Cancel', user_profile_path(current_user), method: :get, class: 'red-button'

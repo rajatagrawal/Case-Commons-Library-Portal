@@ -81,38 +81,5 @@ describe 'users/profile' do
         expect(page).to have_css('a', 'Check In')
       end
     end
-
-  end
-
-  context 'when the logged in user is admin' do
-    let(:user) { users(:admin) }
-
-    before do
-      assign(:user, user)
-    end
-
-    it 'shows the add a new book button' do
-      expect(page).to have_css('a',text: 'Add a book')
-    end
-
-    it 'shows the delete a book button' do
-      expect(page).to have_css('a','Delete a book')
-    end
-
-    it 'shows edit a book button' do
-      expect(page).to have_css('a','Edit a book')
-    end
-
-    it 'shows add a user button' do
-      expect(page).to have_css('a','Add a user')
-    end
-
-    it 'shows edit a user button' do
-      expect(page).to have_css('a','Edit a user')
-    end
-
-    it 'shows delete a user button' do
-      expect(page).to have_css('a','Delete a user')
-    end
   end
 end

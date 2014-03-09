@@ -1,5 +1,5 @@
 %h2 Users
-%table{border: '2px'}
+%table
   %tr
     %th
       Name
@@ -22,6 +22,6 @@
           %li
             = book.title
       %td
-        = button_to 'Edit User', edit_user_path(user), method: :get
+        = button_to 'Edit User', edit_user_path(user), method: :get, class: 'blue-button'
       %td
-        = button_to 'Delete User', user_path(user), method: :delete, confirm: 'Are you sure?'
+        = button_to 'Delete User', user_path(user), method: :delete, confirm: 'Are you sure?', class: 'red-button'
